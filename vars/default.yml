@@ -1,0 +1,10 @@
+---
+# Configure system-wide settings.
+os:
+  timezone: Europe/Berlin
+
+# default variables
+# for example git:
+git:
+  username: pi
+  useremail: pi@raspberrypi

@@ -1,0 +1,7 @@
+---
+- name: Copy current user's ssh key for password-less access
+  authorized_key:
+    user: '{{ user }}'
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+  tags: ssh_key

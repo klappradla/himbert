@@ -1,0 +1,12 @@
+---
+# ansible playbook
+
+- hosts: raspberries
+  roles:
+    - essentials
+  vars:
+    home: "{{ ansible_env.HOME }}"
+    user: "{{ ansible_env.USER }}"
+    pi_password: "password"
+  vars_files:
+    - vars/default.yml
