@@ -22,13 +22,3 @@
     autoclean: yes
     autoremove: yes
   become: yes
-
-- name: ensure locale exists
-  locale_gen:
-    name: '{{ locale }}'
-    state: present
-  become: yes
-
-- name: set default locale
-  command: update-locale LANG={{ locale }} LC_ALL={{ locale }} LANGUAGE={{ locale }}
-  become: yes

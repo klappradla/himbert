@@ -3,7 +3,9 @@
 
 - hosts: raspberries
   roles:
+    - locale
     - essentials
+    - packages
   vars:
     home: '{{ ansible_env.HOME }}'
     user: '{{ ansible_env.USER }}'
