@@ -1,0 +1,25 @@
+---
+- name: download nextcloud
+  get_url:
+    url: "{{ nextcloud.releases_url }}-{{ nextcloud.version }}.tar.bz2"
+    checksum: "sha256:{{ nextcloud.releases_url }}-{{ nextcloud.version }}.tar.bz2.sha256"
+    dest: "{{ home }}"
+  register: nextcloud_archive
+  tags: installation
+
+- name: unarchive nextcloud files for usage in www directory
+  unarchive:
+    src: "{{ nextcloud_archive.dest }}"
+    dest: /var/www/
+    owner: www-data
+    group: www-data
+    remote_src: yes
+  become: yes
+  tags: installation
+
+- name: clean up installation artifacts
+  file:
+    path: "{{ nextcloud_archive.dest }}"
+    state: absent
+  tags: installation
+

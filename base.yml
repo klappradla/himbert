@@ -6,6 +6,7 @@
     - locale
     - essentials
     - packages
+    - nextcloud
   vars:
     home: '{{ ansible_env.HOME }}'
     user: '{{ ansible_env.USER }}'
