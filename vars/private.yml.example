@@ -1,0 +1,6 @@
+---
+# private variables
+# for example git:
+git:
+  username: brombert
+  useremail: pi@raspberrypi

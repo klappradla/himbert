@@ -15,3 +15,4 @@
     pi_password: "password"
   vars_files:
     - vars/default.yml
+    - vars/private.yml

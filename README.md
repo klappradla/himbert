@@ -11,3 +11,7 @@
         ssh-copy-id pi@raspberrypi.local
 
     *default password: `raspberry`*
+
+1. Copy and adapt the *private* configuration:
+
+        cp vars/private.yml.example vars/private.yml
