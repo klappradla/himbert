@@ -6,6 +6,7 @@
     - locale
     - essentials
     - packages
+    - harddrive
     - nextcloud
     - postgres
     - nginx

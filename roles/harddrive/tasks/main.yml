@@ -1,0 +1,27 @@
+---
+- name: create mount directory
+  file:
+    path: /hdd
+    state: directory
+    owner: '{{ user }}'
+    group: '{{ user }}'
+  become: yes
+  tags: harddrive
+
+- name: mount hdd
+  mount:
+    path: /hdd
+    src: /dev/sda1
+    fstype: ext4
+    state: present
+  become: yes
+  tags: harddrive
+
+- name: add data directory
+  file:
+    path: /hdd/data/
+    owner: www-data
+    group: www-data
+    state: directory
+  become: yes
+  tags: harddrive
