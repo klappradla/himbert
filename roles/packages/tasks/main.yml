@@ -10,6 +10,7 @@
       - libcurl4
       - ffmpeg
   become: yes
+  tags: packages
 
 - name: install web services
   apt:
@@ -19,12 +20,13 @@
       - postgresql
       - redis-server
   become: yes
+  tags: packages
 
 - name: install php packages
   apt:
     state: present
     pkg:
-      - php7.3
+      - php7.3-fpm
       - php7.3-curl
       - php7.3-gd
       - php7.3-intl
@@ -38,3 +40,4 @@
       - php-imagick
       - php-redis
   become: yes
+  tags: packages
