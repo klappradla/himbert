@@ -1,0 +1,33 @@
+---
+- name: change password for postgres user
+  postgresql_user:
+    db: postgres
+    user: postgres
+    password: '{{ postgres.postgres_user_password }}'
+  become_user: postgres
+  become: yes
+  vars:
+    ansible_ssh_pipelining: true
+  tags: postgres
+
+- name: create database user
+  postgresql_user:
+    user: '{{ postgres.user }}'
+    password: '{{ postgres.password }}'
+    role_attr_flags: CREATEDB
+  become_user: postgres
+  become: yes
+  vars:
+    ansible_ssh_pipelining: true
+  tags: postgres
+
+- name: create database
+  postgresql_db:
+    name: '{{ postgres.db_name }}'
+    owner: '{{ postgres.user }}'
+  become_user: postgres
+  become: yes
+  vars:
+    ansible_ssh_pipelining: true
+  tags: postgres
+

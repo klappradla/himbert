@@ -7,6 +7,7 @@
     - essentials
     - packages
     - nextcloud
+    - postgres
     - nginx
   vars:
     home: '{{ ansible_env.HOME }}'

@@ -12,6 +12,13 @@
   become: yes
   tags: packages
 
+- name: install dev packages
+  apt:
+    state: present
+    pkg: python-psycopg2
+  become: yes
+  tags: [packages, postgres]
+
 - name: install web services
   apt:
     state: present
