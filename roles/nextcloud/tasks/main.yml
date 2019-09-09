@@ -23,3 +23,11 @@
     state: absent
   tags: installation
 
+- name: configure caching
+  template:
+    src: cache.config.php.j2
+    dest: /var/www/nextcloud/config/cache.config.php
+    owner: www-data
+    group: www-data
+  become: yes
+  tags: php
