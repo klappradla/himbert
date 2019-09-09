@@ -1,6 +1,7 @@
 ---
 # private variables
-# for example git:
-git:
-  username: brombert
-  useremail: pi@raspberrypi
+postgres:
+  postgres_user_password: CHANGE_ME
+  user: CHANGE_ME
+  password: CHANGE_ME
+  db_name: CHANGE_ME
