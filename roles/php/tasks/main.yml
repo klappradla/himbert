@@ -1,10 +1,37 @@
 ---
 - name: configure php-fpm
-  copy:
-    src: ../templates/www.conf
-    dest: /etc/php/7.3/fpm/pool.d/www.conf
-    owner: root
-    group: root
+  ini_file:
+    path: /etc/php/7.3/fpm/pool.d/www.conf
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+  with_items:
+    - { section: 'www', option: 'pm', value: 'dynamic' }
+    - { section: 'www', option: 'pm.max_children', value: 120 }
+    - { section: 'www', option: 'pm.start_servers', value: 12 }
+    - { section: 'www', option: 'pm.min_spare_servers', value: 6 }
+    - { section: 'www', option: 'pm.max_spare_servers', value: 18 }
+    - { section: 'www', option: 'env[HOSTNAME]', value: '$HOSTNAME' }
+    - { section: 'www', option: 'env[PATH]', value: '/usr/local/bin:/usr/bin:/bin' }
+    - { section: 'www', option: 'env[TMP]', value: '/tmp' }
+    - { section: 'www', option: 'env[TMPDIR]', value: '/tmp' }
+    - { section: 'www', option: 'env[TEMP]', value: '/tmp' }
+  become: yes
+  tags: php
+
+- name: configure php.ini
+  ini_file:
+    path: /etc/php/7.3/fpm/php.ini
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+  with_items:
+    - { section: 'opcache', option: 'opcache.enable', value: 1 }
+    - { section: 'opcache', option: 'opcache.interned_strings_buffer', value: 8 }
+    - { section: 'opcache', option: 'opcache.max_accelerated_files', value: 10000 }
+    - { section: 'opcache', option: 'opcache.memory_consumption', value: 128 }
+    - { section: 'opcache', option: 'opcache.save_comments', value: 1 }
+    - { section: 'opcache', option: 'opcache.revalidate_freq', value: 1 }
   become: yes
   tags: php
 
