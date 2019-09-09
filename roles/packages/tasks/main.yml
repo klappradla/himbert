@@ -25,7 +25,6 @@
     pkg:
       - nginx
       - postgresql
-      - redis-server
   become: yes
   tags: packages
 
@@ -45,6 +44,5 @@
       - php7.3-json
       - php7.3-bz2
       - php-imagick
-      - php-redis
   become: yes
   tags: packages
