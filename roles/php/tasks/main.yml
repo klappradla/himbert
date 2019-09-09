@@ -1,0 +1,16 @@
+---
+- name: configure php-fpm
+  copy:
+    src: ../templates/www.conf
+    dest: /etc/php/7.3/fpm/pool.d/www.conf
+    owner: root
+    group: root
+  become: yes
+  tags: php
+
+- name: restart php-fpm
+  service:
+    name: php7.3-fpm
+    state: restarted
+  become: yes
+  tags: php

@@ -17,9 +17,9 @@
   become: yes
   tags: harddrive
 
-- name: add data directory
+- name: add nextcloud directory
   file:
-    path: /hdd/data/
+    path: /hdd/nextcloud/
     owner: www-data
     group: www-data
     state: directory
