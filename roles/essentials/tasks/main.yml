@@ -3,11 +3,13 @@
   apt:
     update_cache: yes
   become: yes
+  tags: packages
 
 - name: upgrade safe packages
   apt:
     upgrade: safe
   become: yes
+  tags: packages
 
 - name: install essential packages
   apt:
@@ -16,9 +18,31 @@
       - vim
       - htop
   become: yes
+  tags: packages
 
 - name: remove unused packages and clean up cache
   apt:
     autoclean: yes
     autoremove: yes
   become: yes
+  tags: packages
+
+- name: add hostname file
+  template:
+    src: hostname.j2
+    dest: /etc/hostname
+  become: yes
+  tags: hostname
+
+- name: set external hostname
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127\.0\.1\.1'
+    line: "127.0.1.1\t{{ pi.hostname }}"
+  become: yes
+  tags: hostname
+
+- name: reboot pi
+  reboot:
+  become: yes
+  tags: hostname

@@ -5,3 +5,5 @@ postgres:
   user: CHANGE_ME
   password: CHANGE_ME
   db_name: CHANGE_ME
+pi:
+  hostname: CHANGE_ME
