@@ -1,4 +1,5 @@
 ---
 nextcloud:
+  domain: localhost
   releases_url: https://download.nextcloud.com/server/releases/nextcloud
   version: 16.0.3

@@ -17,7 +17,7 @@
     - { section: 'www', option: 'env[TMPDIR]', value: '/tmp' }
     - { section: 'www', option: 'env[TEMP]', value: '/tmp' }
   become: yes
-  tags: php
+  tags: [nextcloud, php]
 
 - name: configure php.ini
   ini_file:
@@ -33,11 +33,11 @@
     - { section: 'opcache', option: 'opcache.save_comments', value: 1 }
     - { section: 'opcache', option: 'opcache.revalidate_freq', value: 1 }
   become: yes
-  tags: php
+  tags: [nextcloud, php]
 
 - name: restart php-fpm
   service:
     name: php7.3-fpm
     state: restarted
   become: yes
-  tags: php
+  tags: [nextcloud, php]

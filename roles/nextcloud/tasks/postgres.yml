@@ -8,7 +8,7 @@
   become: yes
   vars:
     ansible_ssh_pipelining: true
-  tags: postgres
+  tags: [nextcloud, postgres]
 
 - name: create database user
   postgresql_user:
@@ -19,7 +19,7 @@
   become: yes
   vars:
     ansible_ssh_pipelining: true
-  tags: postgres
+  tags: [nextcloud, postgres]
 
 - name: create database
   postgresql_db:
@@ -29,5 +29,5 @@
   become: yes
   vars:
     ansible_ssh_pipelining: true
-  tags: postgres
+  tags: [nextcloud, postgres]
 

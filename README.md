@@ -1,6 +1,10 @@
 # 🍬 himbert
 
-## Requirements
+## Getting Started
+
+1. Install [`ansible`](https://www.ansible.com/)
+
+        brew install ansible
 
 1. [Download]() and [install](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md) OS on Raspberry Pi
 

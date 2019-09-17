@@ -1,27 +1,27 @@
 ---
 - name: add config for nextcloud page
   template:
-    src: nextcloud.config.j2
+    src: nginx/nextcloud.config.j2
     dest: /etc/nginx/sites-enabled/nextcloud
   become: yes
-  tags: nginx
+  tags: [nextcloud, nginx]
 
 - name: disable default page
   file:
     path: /etc/nginx/sites-enabled/default
     state: absent
   become: yes
-  tags: nginx
+  tags: [nextcloud, nginx]
 
 - name: move config for default page
   template:
-    src: default.config.j2
+    src: nginx/default.config.j2
     dest: /etc/nginx/sites-available/default
-  tags: nginx
+  tags: [nextcloud, nginx]
 
 - name: reload nginx
   service:
     name: nginx
     state: reloaded
   become: yes
-  tags: nginx
+  tags: [nextcloud, nginx]

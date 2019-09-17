@@ -10,14 +10,14 @@
       - libcurl4
       - ffmpeg
   become: yes
-  tags: packages
+  tags: [nextcloud, packages]
 
 - name: install dev packages
   apt:
     state: present
     pkg: python-psycopg2
   become: yes
-  tags: [packages, postgres]
+  tags: [nextcloud, packages, postgres]
 
 - name: install web services
   apt:
@@ -26,7 +26,7 @@
       - nginx
       - postgresql
   become: yes
-  tags: packages
+  tags: [nextcloud, packages]
 
 - name: install php packages
   apt:
@@ -45,4 +45,4 @@
       - php7.3-bz2
       - php-imagick
   become: yes
-  tags: packages
+  tags: [nextcloud, packages]

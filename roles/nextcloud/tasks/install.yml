@@ -1,0 +1,56 @@
+---
+- name: download nextcloud
+  get_url:
+    url: "{{ nextcloud.releases_url }}-{{ nextcloud.version }}.tar.bz2"
+    checksum: "sha256:{{ nextcloud.releases_url }}-{{ nextcloud.version }}.tar.bz2.sha256"
+    dest: "{{ home }}"
+  register: nextcloud_archive
+  tags: [nextcloud, installation]
+
+- name: unarchive nextcloud files for usage in www directory
+  unarchive:
+    src: "{{ nextcloud_archive.dest }}"
+    dest: /var/www/
+    owner: www-data
+    group: www-data
+    remote_src: yes
+  become: yes
+  tags: [nextcloud, installation]
+
+- name: clean up installation artifacts
+  file:
+    path: "{{ nextcloud_archive.dest }}"
+    state: absent
+  tags: [nextcloud, installation]
+
+- name: configure caching
+  template:
+    src: cache.config.php.j2
+    dest: /var/www/nextcloud/config/cache.config.php
+    owner: www-data
+    group: www-data
+  become: yes
+  tags: [nextcloud, installation, php]
+
+- name: add nextcloud cron service
+  template:
+    src: nextcloudcron.service.j2
+    dest: /etc/systemd/system/nextcloudcron.service
+  become: yes
+  tags: [nextcloud, installation, systemd]
+
+- name: add nextcloud cron timer
+  template:
+    src: nextcloudcron.timer.j2
+    dest: /etc/systemd/system/nextcloudcron.timer
+  become: yes
+  tags: [nextcloud, installation, systemd]
+
+- name: start nextcloud cron timer
+  systemd:
+    name: nextcloudcron.timer
+    state: started
+    enabled: yes
+  become: yes
+  tags: [nextcloud, installation, systemd]
+

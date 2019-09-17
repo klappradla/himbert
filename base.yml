@@ -5,12 +5,7 @@
   roles:
     - locale
     - essentials
-    - packages
-    - harddrive
     - nextcloud
-    - postgres
-    - nginx
-    - php
   vars:
     home: '{{ ansible_env.HOME }}'
     user: '{{ ansible_env.USER }}'
