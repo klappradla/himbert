@@ -16,3 +16,6 @@
 
 - name: configure php
   import_tasks: php.yml
+
+- name: configure nextcloud installation
+  import_tasks: config.yml

@@ -23,15 +23,6 @@
     state: absent
   tags: [nextcloud, installation]
 
-- name: configure caching
-  template:
-    src: cache.config.php.j2
-    dest: /var/www/nextcloud/config/cache.config.php
-    owner: www-data
-    group: www-data
-  become: yes
-  tags: [nextcloud, installation, php]
-
 - name: add nextcloud cron service
   template:
     src: nextcloudcron.service.j2
