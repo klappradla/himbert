@@ -1,7 +1,7 @@
 ---
-- name: add config for nextcloud page
+- name: add http only config for nextcloud page
   template:
-    src: nginx/nextcloud.config.j2
+    src: nginx/nextcloud_http.config.j2
     dest: /etc/nginx/sites-enabled/nextcloud
   become: yes
   tags: [nextcloud, nginx]
