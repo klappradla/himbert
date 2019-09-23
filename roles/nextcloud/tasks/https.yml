@@ -1,0 +1,5 @@
+---
+- name: add certificate
+  command: certbot certonly -w /var/www/nextcloud/ -d {{nextcloud.domain}} -m {{ssl.email}} --standalone --noninteractive --agree-todos
+  become: yes
+  tags: [nextcloud, ssl]
