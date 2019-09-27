@@ -6,7 +6,7 @@ upstream php-handler {
 server {
     listen 80;
     listen [::]:80;
-    server_name {{ nextcloud.domain }};
+    server_name localhost;
 
     # WARNING: Only add the preload option once you read about
     # the consequences in https://hstspreload.org/. This option

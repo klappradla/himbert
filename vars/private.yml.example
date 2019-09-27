@@ -1,5 +1,7 @@
 ---
 # private variables
+ssl:
+  email: CHANGE_ME
 postgres:
   postgres_user_password: CHANGE_ME
   user: CHANGE_ME
