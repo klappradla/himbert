@@ -32,6 +32,7 @@
     - { section: 'opcache', option: 'opcache.memory_consumption', value: 128 }
     - { section: 'opcache', option: 'opcache.save_comments', value: 1 }
     - { section: 'opcache', option: 'opcache.revalidate_freq', value: 1 }
+    - { section: 'PHP', option: 'memory_limit', value: '512M' }
   become: yes
   tags: [nextcloud, php]
 
