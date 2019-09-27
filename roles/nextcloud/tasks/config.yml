@@ -16,3 +16,12 @@
     group: www-data
   become: yes
   tags: [nextcloud, config, php]
+
+- name: configure database
+  template:
+    src: config/database.config.php.j2
+    dest: /var/www/nextcloud/config/database.config.php
+    owner: www-data
+    group: www-data
+  become: yes
+  tags: [nextcloud, config, php]

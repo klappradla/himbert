@@ -10,10 +10,10 @@
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]
 
-- name: create database user
+- name: create nextcloud database user
   postgresql_user:
-    user: '{{ postgres.user }}'
-    password: '{{ postgres.password }}'
+    user: '{{ postgres.nextcloud.db_user }}'
+    password: '{{ postgres.nextcloud.db_password }}'
     role_attr_flags: CREATEDB
   become_user: postgres
   become: yes
@@ -21,10 +21,10 @@
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]
 
-- name: create database
+- name: create nextcloud database
   postgresql_db:
-    name: '{{ postgres.db_name }}'
-    owner: '{{ postgres.user }}'
+    name: '{{ postgres.nextcloud.db_name }}'
+    owner: '{{ postgres.nextcloud.db_user }}'
   become_user: postgres
   become: yes
   vars:
