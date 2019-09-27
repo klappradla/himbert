@@ -47,7 +47,7 @@
   lineinfile:
     path: /etc/hosts
     regexp: '^127\.0\.1\.1'
-    line: "127.0.1.1\t{{ pi.hostname }}"
+    line: "127.0.1.1\t{{ inventory_hostname }}"
   become: yes
   tags: hostname
 

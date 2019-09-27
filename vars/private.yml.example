@@ -9,7 +9,6 @@ postgres:
     db_name: CHANGE_ME
   postgres_user_password: CHANGE_ME
 pi:
-  hostname: CHANGE_ME
   domain: CHANGE_ME
 wifi:
   name: CHANGE_ME
