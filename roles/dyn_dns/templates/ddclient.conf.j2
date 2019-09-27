@@ -1,0 +1,11 @@
+# query the web for the IP
+use=web, web=dynamicdns.park-your-domain.com/getip
+# update interval in seconds
+daemon 60
+ssl=yes
+protocol=namecheap
+server=dynamicdns.park-your-domain.com
+login={{dns.domain}}
+password='{{ dns.password }}'
+# subdomain
+{{ dns.subdomain }}

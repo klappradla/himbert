@@ -5,6 +5,7 @@
   roles:
     - locale
     - essentials
+    - dyn_dns
     - nextcloud
   vars:
     home: '{{ ansible_env.HOME }}'

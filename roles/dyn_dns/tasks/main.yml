@@ -1,0 +1,23 @@
+- name: install dyn dns client
+  apt:
+    state: present
+    pkg:
+      - ddclient
+      - libio-socket-ssl-perl
+  become: yes
+  tags: [dns]
+
+- name: add dyn dns client config
+  template:
+    src: ddclient.conf.j2
+    dest: /etc/ddclient.conf
+  become: yes
+  tags: [dns]
+
+- name: restart ddclient deamon
+  service:
+    name: ddclient
+    state: restarted
+  become: yes
+  tags: [dns]
+
