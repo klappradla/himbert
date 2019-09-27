@@ -5,11 +5,18 @@
   become: yes
   tags: packages
 
-- name: upgrade safe packages
-  apt:
-    upgrade: safe
-  become: yes
-  tags: packages
+# NOTE: ansible module for that is currently broken - run manual
+# - name: upgrade distro
+#   apt:
+#     upgrade: dist
+#   become: yes
+#   tags: packages
+
+# - name: upgrade safe packages
+#   apt:
+#     upgrade: safe
+#   become: yes
+#   tags: packages
 
 - name: install essential packages
   apt:
