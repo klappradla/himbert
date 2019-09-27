@@ -1,5 +1,19 @@
 ---
+- name: stop nginx (to free ports)
+  service:
+    name: nginx
+    state: stopped
+    become: yes
+    tags: [nextcloud, nginx, ssl]
+
 - name: add certificate
-  command: certbot certonly -w /var/www/nextcloud/ -d {{nextcloud.domain}} -m {{ssl.email}} --standalone --noninteractive --agree-todos
+  command: certbot certonly -d {{nextcloud.url}} -m {{ssl.email}} --standalone --noninteractive --agree-tos --staging
   become: yes
   tags: [nextcloud, ssl]
+
+- name: start nginx again
+  service:
+    name: nginx
+    state: started
+  become: yes
+  tags: [nextcloud, nginx, ssl]

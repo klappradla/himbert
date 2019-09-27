@@ -1,5 +1,7 @@
 ---
 nextcloud:
   domain: localhost
+  url: cloud.klappradla.me
   releases_url: https://download.nextcloud.com/server/releases/nextcloud
   version: 16.0.3
+  https_only: false
