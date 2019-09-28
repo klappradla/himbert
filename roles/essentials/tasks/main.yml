@@ -1,37 +1,6 @@
 ---
-- name: update apt cache
-  apt:
-    update_cache: yes
-  become: yes
-  tags: packages
-
-- name: upgrade distro
-  apt:
-    upgrade: dist
-  become: yes
-  tags: packages
-
-- name: upgrade safe packages
-  apt:
-    upgrade: safe
-  become: yes
-  tags: packages
-
-- name: install essential packages
-  apt:
-    state: present
-    pkg:
-      - vim
-      - htop
-  become: yes
-  tags: packages
-
-- name: remove unused packages and clean up cache
-  apt:
-    autoclean: yes
-    autoremove: yes
-  become: yes
-  tags: packages
+- name: manage apt packages
+  import_tasks: packages.yml
 
 - name: add hostname file
   template:
