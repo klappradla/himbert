@@ -1,0 +1,14 @@
+set nocompatible
+
+" use syntax highlighting
+syntax on
+" use filetype plugins
+filetype plugin indent on
+" show line numbers
+set number
+" show file status
+set ruler
+" set encoding
+set encoding=utf-8
+" show statusbar
+set laststatus=2

@@ -37,3 +37,12 @@ Ansible setup for my personal Raspberry Pis.
 1. Finalize setup
 
         bin/update
+
+
+## Tips & Tricks
+
+- edit file on a Pi as superuser:
+
+        sudo -E vim <path-to-file>
+
+    _(-E preserves the environment and keeps the configured vimrc)_

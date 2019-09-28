@@ -2,6 +2,9 @@
 - name: manage apt packages
   import_tasks: packages.yml
 
+- name: manage dotfiles
+  import_tasks: dotfiles.yml
+
 - name: update naming of the host
   import_tasks: hostname.yml
 

@@ -1,0 +1,6 @@
+---
+- name: add vimrc
+  copy:
+    src: templates/dotfiles/vimrc
+    dest: ~/.vimrc
+  tags: dotfiles
