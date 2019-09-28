@@ -14,10 +14,12 @@
     path: /etc/hosts
     regexp: '^127\.0\.1\.1'
     line: "127.0.1.1\t{{ inventory_hostname }}"
+  register: hostfile
   become: yes
   tags: hostname
 
 - name: reboot pi
   reboot:
+  when: hostfile.changed
   become: yes
   tags: hostname
