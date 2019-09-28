@@ -1,10 +1,12 @@
 ---
 - name: ensure locale exists
   locale_gen:
-    name: '{{ locale }}'
+    name: '{{ os.locale }}'
     state: present
   become: yes
+  tags: locale
 
 - name: set default locale
-  command: update-locale LANG={{ locale }} LC_ALL={{ locale }} LANGUAGE={{ locale }}
+  command: update-locale LANG={{ os.locale }} LC_ALL={{ os.locale }} LANGUAGE={{ os.locale }}
   become: yes
+  tags: locale

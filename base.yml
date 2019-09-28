@@ -10,7 +10,6 @@
   vars:
     home: '{{ ansible_env.HOME }}'
     user: '{{ ansible_env.USER }}'
-    locale: en_US.UTF-8
     pi_password: "password"
   vars_files:
     - vars/default.yml

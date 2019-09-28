@@ -2,6 +2,7 @@
 # Configure system-wide settings.
 os:
   timezone: Europe/Berlin
+  locale: en_US.UTF-8
 
 # default variables
 # for example git:

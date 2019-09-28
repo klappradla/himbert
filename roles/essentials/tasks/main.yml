@@ -1,7 +1,5 @@
 ---
-# NOTE: ansible module for that is currently broken - run manual
 - name: update apt cache
-  # command: apt-get update
   apt:
     update_cache: yes
   become: yes
@@ -14,7 +12,6 @@
   tags: packages
 
 - name: upgrade safe packages
-  # command: apt-get upgrade -y
   apt:
     upgrade: safe
   become: yes
