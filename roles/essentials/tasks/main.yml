@@ -2,24 +2,6 @@
 - name: manage apt packages
   import_tasks: packages.yml
 
-- name: add hostname file
-  template:
-    src: hostname.j2
-    dest: /etc/hostname
-  become: yes
-  tags: hostname
+- name: update naming of the host
+  import_tasks: hostname.yml
 
-- name: set external hostname
-  lineinfile:
-    path: /etc/hosts
-    regexp: '^127\.0\.1\.1'
-    line: "127.0.1.1\t{{ inventory_hostname }}"
-  register: hostfile
-  become: yes
-  tags: hostname
-
-- name: reboot pi
-  reboot:
-  when: hostfile.changed
-  become: yes
-  tags: hostname
