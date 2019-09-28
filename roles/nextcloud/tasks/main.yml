@@ -8,17 +8,20 @@
 - name: install nextcloud
   import_tasks: install.yml
 
+- name: configure nextcloud installation
+  import_tasks: config.yml
+
+- name: configure php
+  import_tasks: php.yml
+
 - name: setup db
   import_tasks: postgres.yml
 
 - name: setup nginx
   import_tasks: nginx.yml
 
+- name: setup cronjobs
+  import_tasks: cron.yml
+
 - name: setup ssl certificates
   import_tasks: https.yml
-
-- name: configure php
-  import_tasks: php.yml
-
-- name: configure nextcloud installation
-  import_tasks: config.yml
