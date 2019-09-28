@@ -11,6 +11,7 @@
   template:
     src: ddclient.conf.j2
     dest: /etc/ddclient.conf
+  register: ddclient_config
   become: yes
   tags: [dns]
 
@@ -18,6 +19,7 @@
   service:
     name: ddclient
     state: restarted
+  when: ddclient_config.changed
   become: yes
   tags: [dns]
 
