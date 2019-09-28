@@ -1,5 +1,5 @@
 ---
 nextcloud_com:
   releases_url: https://download.nextcloud.com/server/releases/nextcloud
-  version: 16.0.3
+  version: 16.0.5
 https_only: false
