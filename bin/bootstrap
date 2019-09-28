@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-# NOTE: using connection=paramiko (python ssh) instead of ssh
-# until ssh keys are exchanged.
-# This would otherwise require installing `sshpass` on macOS...
+# NOTE: this is skipping "ssl" tasks by default.
+# Setting up SSL certificates requires a running HTTP server.
 cd "$(dirname "$0")/.."
 exec ansible-playbook \
   --inventory=raspberries \
-  --connection=paramiko \
-  --ask-pass \
+  --skip-tags "ssl" \
   base.yml \
   $@

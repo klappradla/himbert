@@ -23,3 +23,17 @@ Ansible setup for my personal Raspberry Pis.
 1. Copy and adapt the *private* configuration:
 
         cp vars/private.yml.example vars/private.yml
+
+## Running
+
+1. Run core setup:
+
+        bin/bootstrap
+
+    _Note: this skips steps that need manual preparation (e.g. generating SSL certificates)._
+
+1. Verify setup and perform manual setup steps (e.g. port forwarding on router)
+
+1. Finalize setup
+
+        bin/update
