@@ -1,7 +1,7 @@
 ---
 - name: configure php-fpm
   ini_file:
-    path: /etc/php/7.3/fpm/pool.d/www.conf
+    path: '/etc/php/{{ php_version }}/fpm/pool.d/www.conf'
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
@@ -21,7 +21,7 @@
 
 - name: configure php.ini
   ini_file:
-    path: /etc/php/7.3/fpm/php.ini
+    path: '/etc/php/{{ php_version }}/fpm/php.ini'
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
@@ -38,7 +38,7 @@
 
 - name: restart php-fpm
   service:
-    name: php7.3-fpm
+    name: 'php{{ php_version }}-fpm'
     state: restarted
   become: yes
   tags: [nextcloud, php]
