@@ -4,10 +4,22 @@
     url: "{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2"
     checksum: "sha256:{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2.sha256"
     dest: "{{ home }}"
+  check_mode: no
   register: nextcloud_archive
   tags: [nextcloud, installation]
 
-- name: unarchive nextcloud files for usage in www directory
+- name: check if nextcloud directory already exists
+  stat:
+    path: /var/www/nextcloud
+  register: nextcloud_dir
+  tags: [nextcloud, installation]
+
+- debug:
+    msg: nextcloud directory already exists
+  when: nextcloud_dir.stat.exists
+  tags: [nextcloud, installation]
+
+- name: unarchive nextcloud files to www directory
   unarchive:
     src: "{{ nextcloud_archive.dest }}"
     dest: /var/www/
@@ -15,11 +27,5 @@
     group: www-data
     remote_src: yes
   become: yes
+  when: nextcloud_archive.changed
   tags: [nextcloud, installation]
-
-- name: clean up installation artifacts
-  file:
-    path: "{{ nextcloud_archive.dest }}"
-    state: absent
-  tags: [nextcloud, installation]
-

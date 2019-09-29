@@ -2,11 +2,11 @@
 - name: install packages
   import_tasks: packages.yml
 
-- name: set up harddrive
-  import_tasks: harddrive.yml
-
 - name: install nextcloud
   import_tasks: install.yml
+
+- name: set up harddrive
+  import_tasks: harddrive.yml
 
 - name: configure nextcloud installation
   import_tasks: config.yml
