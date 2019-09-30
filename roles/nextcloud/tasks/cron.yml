@@ -1,14 +1,14 @@
 ---
 - name: add nextcloud cron service
   template:
-    src: nextcloudcron.service.j2
+    src: systemd/nextcloudcron.service.j2
     dest: /etc/systemd/system/nextcloudcron.service
   become: yes
   tags: [nextcloud, cron, systemd]
 
 - name: add nextcloud cron timer
   template:
-    src: nextcloudcron.timer.j2
+    src: systemd/nextcloudcron.timer.j2
     dest: /etc/systemd/system/nextcloudcron.timer
   become: yes
   tags: [nextcloud, cron, systemd]
