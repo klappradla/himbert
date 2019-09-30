@@ -27,5 +27,25 @@
   become: yes
   tags: [nextcloud, ssl]
 
-# TODO: add service to renew certificate
-# (only works when port 80 and 443 free to the internet)
+- name: add certbot renewal service
+  template:
+    src: systemd/certbot_renewal.service.j2
+    dest: /etc/systemd/system/certbot_renewal.service
+  become: yes
+  tags: [nextcloud, ssl, systemd]
+
+- name: add certbot renewal timer
+  template:
+    src: systemd/certbot_renewal.timer.j2
+    dest: /etc/systemd/system/certbot_renewal.timer
+  become: yes
+  tags: [nextcloud, ssl, systemd]
+
+- name: start certbot renewal timer
+  systemd:
+    name: certbot_renewal.timer
+    state: started
+    enabled: yes
+  become: yes
+  tags: [nextcloud, ssl, systemd]
+

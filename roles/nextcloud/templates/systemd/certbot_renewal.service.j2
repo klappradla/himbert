@@ -1,0 +1,8 @@
+[Unit]
+Description=Certbot certificate renewal
+
+[Service]
+ExecStart=/usr/bin/certbot renew --pre-hook "service nginx stop" --post-hook "service nginx start"
+
+[Install]
+WantedBy=basic.target

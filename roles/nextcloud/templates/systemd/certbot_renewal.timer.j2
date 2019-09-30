@@ -1,0 +1,10 @@
+[Unit]
+Description=Run certbot_renew once a week
+
+[Timer]
+OnBootSec=300
+OnUnitActiveSec=1w
+Unit=certbot_renewal.service
+
+[Install]
+WantedBy=timers.target
