@@ -25,3 +25,12 @@
     group: www-data
   become: yes
   tags: [nextcloud, config, php]
+
+- name: configure email server
+  template:
+    src: config/email.config.php.j2
+    dest: /var/www/nextcloud/config/email.config.php
+    owner: www-data
+    group: www-data
+  become: yes
+  tags: [nextcloud, config, php]
