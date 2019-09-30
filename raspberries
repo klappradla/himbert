@@ -1,45 +1,4 @@
 # Ansible inventory file
-#
-# This inventory file is intended for bootstrapping a fresh Raspberry Pi with
-# standard configuration (in particular hostname, username and password).  If
-# you have made any changes to your Pi already, you may need to edit this file
-# accordingly, create a private copy or specify the changed values on the
-# commandline.
-#
-# BE SURE NOT TO COMMIT PASSWORDS TO A PUBLIC REPOSITORY!
-#
-# If you changed the hostname of your Raspberry Pi, update the host entry in
-# the 'raspberries' group below by providing the Pi's DNS name or IP address.
-# You can also provision multiple hosts simultaneously:
-#
-#   [raspberries]
-#   192.168.1.10
-#   rpi.dns.name
-#
-# If your host runs on a non-standard SSH port you can put the port number
-# after the hostname with a colon. For instance:
-#
-#   [raspberries]
-#   192.168.1.10:2222
-#
-# If you want Ansible to SSH into your host as a different user,
-# e.g. 'mark', you can provide the username as a host variable:
-#
-#   [raspberries]
-#   rpi.dns.name ansible_port=2222 ansible_user=mark
-#
-# or you can specify the username on the command-line:
-#
-#   ansible-playbook --inventory=raspberrypi --user=mark site.yml
-#
-# In order to have Ansible ask for the connection password,
-# add the -k/--ask-pass option to the ansible-playbook call.
-#
-# Once you have deployed your public SSH key to the Pi,
-# you can just leave out the password.
-#
-# For an introduction to Ansible inventory files, read:
-# http://docs.ansible.com/ansible/intro_inventory.html
 
 [raspberries]
 # erdbert ansible_host=192.168.178.48 ansible_user=pi

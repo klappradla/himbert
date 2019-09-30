@@ -13,4 +13,4 @@
     pi_password: "password"
   vars_files:
     - vars/default.yml
-    - vars/private.yml
+    - 'vars/private/{{ inventory_hostname }}.yml'

@@ -20,9 +20,9 @@ Ansible setup for my personal Raspberry Pis.
 
         *default password: `raspberry`*
 
-1. Copy and adapt the *private* configuration:
+1. Copy and adapt the *private* configuration for every hosts:
 
-        cp vars/private.yml.example vars/private.yml
+        cp vars/private.yml.example vars/private/<hostname>.yml
 
 ## Running
 
