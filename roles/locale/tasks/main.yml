@@ -6,7 +6,31 @@
   become: yes
   tags: locale
 
-- name: set default locale
-  command: update-locale LANG={{ os.locale }} LC_ALL={{ os.locale }} LANGUAGE={{ os.locale }}
-  become: yes
+- name: check if LANG is already set
+  lineinfile:
+    name: /etc/default/locale
+    line: "LANG={{ os.locale }}"
+    state: present
+  check_mode: yes
+  notify:
+    - update locale
+  tags: locale
+
+- name: check if LC_ALL is already set
+  lineinfile:
+    name: /etc/default/locale
+    line: "LC_ALL={{ os.locale }}"
+    state: present
+  check_mode: yes
+  notify:
+    - update locale
+  tags: locale
+
+- name: check if LANGUAGE is already set
+  lineinfile:
+    name: /etc/default/locale
+    line: "LANGUAGE={{ os.locale }}"
+    state: present
+  check_mode: yes
+  register: lc_all
   tags: locale
