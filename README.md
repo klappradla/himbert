@@ -45,4 +45,16 @@ _Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberr
 
 ## Tips & Tricks
 
-See the [docs](DOC.md) file for some useful tips.
+### Linting
+
+Use [ansible lint](https://docs.ansible.com/ansible-lint/) to check for bad practices in the playbook.
+
+Install the CLI tool:
+
+    pip install ansible-lint
+
+Run the linter on the playbook:
+
+    ansible-lint base.yml
+
+See [docs](DOC.md) for some useful tips.
