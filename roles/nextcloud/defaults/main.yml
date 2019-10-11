@@ -3,4 +3,3 @@ nextcloud_com:
   releases_url: https://download.nextcloud.com/server/releases/nextcloud
   version: 16.0.5
 php_version: '7.3'
-https_only: false

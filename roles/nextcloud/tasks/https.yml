@@ -7,7 +7,7 @@
   tags: [nextcloud, ssl]
 
 - name: add certificate
-  command: certbot certonly -d {{pi.domain}} --email {{ssl.email}} --standalone --noninteractive --agree-tos
+  command: certbot certonly -d {{ pi.domain }} --email {{ ssl.email }} --standalone --noninteractive --agree-tos
   args:
     creates: '/etc/letsencrypt/live/{{ pi.domain }}'
   become: yes
