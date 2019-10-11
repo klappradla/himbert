@@ -24,9 +24,9 @@ _Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberr
 
         *default password: `raspberry`*
 
-1. Copy and adapt the *private* configuration for every hosts:
+1. Copy and adapt _host-specific_ configuration for every hosts:
 
-        cp vars/private.yml.example vars/private/<hostname>.yml
+        cp host_vars/hostname.yml.example host_vars/<hostname>.yml
 
 ## Running
 

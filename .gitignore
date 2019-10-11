@@ -1,3 +1,3 @@
 # private configuration vars
-vars/private/*
-!vars/private/.keep
+host_vars/*
+!host_vars/hostname.yml.example

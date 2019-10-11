@@ -10,6 +10,3 @@
   vars:
     home: '{{ ansible_env.HOME }}'
     user: '{{ ansible_env.USER }}'
-  vars_files:
-    - vars/default.yml
-    - 'vars/private/{{ inventory_hostname }}.yml'
