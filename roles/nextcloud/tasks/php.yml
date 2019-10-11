@@ -17,6 +17,8 @@
     - { section: 'www', option: 'env[TMPDIR]', value: '/tmp' }
     - { section: 'www', option: 'env[TEMP]', value: '/tmp' }
   become: yes
+  notify:
+    - restart php-fpm
   tags: [nextcloud, php]
 
 - name: configure php.ini
@@ -34,11 +36,6 @@
     - { section: 'opcache', option: 'opcache.revalidate_freq', value: 1 }
     - { section: 'PHP', option: 'memory_limit', value: '512M' }
   become: yes
-  tags: [nextcloud, php]
-
-- name: restart php-fpm
-  service:
-    name: 'php{{ php_version }}-fpm'
-    state: restarted
-  become: yes
+  notify:
+    - restart php-fpm
   tags: [nextcloud, php]
