@@ -14,3 +14,7 @@ dns:
   domain: CHANGE_ME
   subdomain: CHANGE_ME
   password: CHANGE_ME
+email:
+  smtp_host: CHANGE_ME
+  smtp_name: CHANGE_ME
+  smtp_password: CHANGE_ME

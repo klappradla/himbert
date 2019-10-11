@@ -2,6 +2,8 @@
 
 Ansible setup for my personal Raspberry Pis.
 
+_Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberry Pi._
+
 ## Getting Started
 
 1. Install [`ansible`](https://www.ansible.com/)
@@ -13,6 +15,8 @@ Ansible setup for my personal Raspberry Pis.
     1. [Download](https://www.raspberrypi.org/downloads/raspbian/) and [install](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md) Raspbian Lite on Raspberry Pi
 
     1. [Enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) by placing an empty `ssh` file in the `boot` directory of the disk
+
+    1. Plug an `ext4` formatted external harddrive into the Pi
 
     1. Add your ssh key to the Pi for password-less setup
 
