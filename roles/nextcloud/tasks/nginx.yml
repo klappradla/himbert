@@ -1,4 +1,5 @@
 ---
+# TODO: only if no ssl certificates
 - name: add http only config for nextcloud page
   template:
     src: nginx/nextcloud_http.config.j2

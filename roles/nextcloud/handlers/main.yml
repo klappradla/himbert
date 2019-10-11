@@ -1,5 +1,9 @@
-- name: reload nginx
-  service:
-    name: nginx
-    state: reloaded
+---
+- name: extract nextcloud files into www
+  unarchive:
+    src: "{{ nextcloud_archive.dest }}"
+    dest: /var/www/
+    owner: www-data
+    group: www-data
+    remote_src: yes
   become: yes

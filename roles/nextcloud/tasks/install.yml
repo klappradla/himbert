@@ -5,7 +5,8 @@
     checksum: "sha256:{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2.sha256"
     dest: "{{ home }}"
   check_mode: no
-  register: nextcloud_archive
+  notify:
+    - extract nextcloud files into www
   tags: [nextcloud, installation]
 
 - name: check if nextcloud directory already exists
@@ -17,15 +18,4 @@
 - debug:
     msg: nextcloud directory already exists
   when: nextcloud_dir.stat.exists
-  tags: [nextcloud, installation]
-
-- name: unarchive nextcloud files to www directory
-  unarchive:
-    src: "{{ nextcloud_archive.dest }}"
-    dest: /var/www/
-    owner: www-data
-    group: www-data
-    remote_src: yes
-  become: yes
-  when: nextcloud_archive.changed
   tags: [nextcloud, installation]

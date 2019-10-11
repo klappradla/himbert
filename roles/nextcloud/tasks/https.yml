@@ -1,11 +1,13 @@
 ---
+# TODO: only if no ssl certificates
 - name: stop nginx (to free ports)
   service:
     name: nginx
     state: stopped
   become: yes
-  tags: [nextcloud, ssl]
+  tags: [nextcloud, nginx, ssl]
 
+# TODO: only if no ssl certificates
 - name: add certificate
   command: certbot certonly -d {{ pi.domain }} --email {{ ssl.email }} --standalone --noninteractive --agree-tos
   args:
@@ -18,14 +20,15 @@
     src: nginx/nextcloud.config.j2
     dest: /etc/nginx/sites-enabled/nextcloud
   become: yes
-  tags: [nextcloud, ssl]
+  tags: [nextcloud, nginx, ssl]
 
+# TODO: only if no ssl certificates
 - name: start nginx again
   service:
     name: nginx
     state: started
   become: yes
-  tags: [nextcloud, ssl]
+  tags: [nextcloud, nginx, ssl]
 
 - name: add certbot renewal service
   template:
