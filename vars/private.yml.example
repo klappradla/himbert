@@ -10,9 +10,6 @@ postgres:
   postgres_user_password: CHANGE_ME
 pi:
   domain: CHANGE_ME
-wifi:
-  name: CHANGE_ME
-  password: CHANGE_ME
 dns:
   domain: CHANGE_ME
   subdomain: CHANGE_ME
