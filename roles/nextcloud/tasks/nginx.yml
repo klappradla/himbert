@@ -1,10 +1,19 @@
 ---
-# TODO: only if no ssl certificates
+- name: check live certificate directory
+  stat:
+    path: '/etc/letsencrypt/live/{{ pi.domain }}'
+  become: yes
+  register: ssl_dir
+  tags: [nextcloud, nginx]
+
 - name: add http only config for nextcloud page
   template:
     src: nginx/nextcloud_http.config.j2
     dest: /etc/nginx/sites-enabled/nextcloud
   become: yes
+  notify:
+    - reload nginx
+  when: ssl_dir.stat.isdir is not defined or not ssl_dir.stat.isdir
   tags: [nextcloud, nginx]
 
 - name: disable default page
@@ -18,11 +27,4 @@
   template:
     src: nginx/default.config.j2
     dest: /etc/nginx/sites-available/default
-  tags: [nextcloud, nginx]
-
-- name: reload nginx
-  service:
-    name: nginx
-    state: reloaded
-  become: yes
   tags: [nextcloud, nginx]

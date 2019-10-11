@@ -1,28 +1,36 @@
 ---
-# TODO: only if no ssl certificates
+- name: check live certificate directory
+  stat:
+    path: '/etc/letsencrypt/live/{{ pi.domain }}'
+  become: yes
+  register: ssl_dir
+  tags: [nextcloud, nginx, ssl]
+
 - name: stop nginx (to free ports)
   service:
     name: nginx
     state: stopped
   become: yes
+  when: ssl_dir.stat.isdir is not defined or not ssl_dir.stat.isdir
   tags: [nextcloud, nginx, ssl]
 
-# TODO: only if no ssl certificates
 - name: add certificate
   command: certbot certonly -d {{ pi.domain }} --email {{ ssl.email }} --standalone --noninteractive --agree-tos
   args:
     creates: '/etc/letsencrypt/live/{{ pi.domain }}'
   become: yes
+  when: ssl_dir.stat.isdir is not defined or not ssl_dir.stat.isdir
   tags: [nextcloud, ssl]
 
 - name: add config for nextcloud page
   template:
     src: nginx/nextcloud.config.j2
     dest: /etc/nginx/sites-enabled/nextcloud
+  notify:
+    - reload nginx
   become: yes
   tags: [nextcloud, nginx, ssl]
 
-# TODO: only if no ssl certificates
 - name: start nginx again
   service:
     name: nginx
