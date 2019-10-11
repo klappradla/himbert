@@ -45,6 +45,12 @@ _Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberr
 
 ## Tips & Tricks
 
+### Updating
+
+Run in _"check"_ mode first to see changes:
+
+    bin/update --check
+
 ### Linting
 
 Use [ansible lint](https://docs.ansible.com/ansible-lint/) to check for bad practices in the playbook.
