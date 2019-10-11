@@ -1,3 +1,4 @@
+---
 - name: install dyn dns client
   apt:
     state: present
@@ -11,15 +12,8 @@
   template:
     src: ddclient.conf.j2
     dest: /etc/ddclient.conf
-  register: ddclient_config
-  become: yes
-  tags: [dns]
-
-- name: restart ddclient deamon
-  service:
-    name: ddclient
-    state: restarted
-  when: ddclient_config.changed
+  notify:
+    - restart ddclient deamon
   become: yes
   tags: [dns]
 

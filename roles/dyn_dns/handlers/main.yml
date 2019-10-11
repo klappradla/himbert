@@ -1,0 +1,7 @@
+---
+- name: restart ddclient deamon
+  service:
+    name: ddclient
+    state: restarted
+  become: yes
+
