@@ -57,7 +57,7 @@ Use [ansible lint](https://docs.ansible.com/ansible-lint/) to check for bad prac
 
 Install the CLI tool:
 
-    pip install ansible-lint
+    pip3 install ansible-lint
 
 Run the linter on the playbook:
 
