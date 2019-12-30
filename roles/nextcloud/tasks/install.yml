@@ -5,6 +5,7 @@
     checksum: "sha256:{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2.sha256"
     dest: "{{ home }}"
   check_mode: no
+  register: nextcloud_archive
   notify:
     - extract nextcloud files into www
   tags: [nextcloud, installation]
