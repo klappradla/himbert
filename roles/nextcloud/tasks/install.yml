@@ -10,6 +10,10 @@
     - extract nextcloud files into www
   tags: [nextcloud, installation]
 
+- name: flush handlers
+  meta: flush_handlers
+  tags: [nextcloud, installation]
+
 - name: check if nextcloud directory already exists
   stat:
     path: /var/www/nextcloud

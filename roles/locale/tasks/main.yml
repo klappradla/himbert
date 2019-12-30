@@ -34,3 +34,7 @@
   check_mode: yes
   register: lc_all
   tags: locale
+
+- name: flush handlers
+  meta: flush_handlers
+  tags: locale
