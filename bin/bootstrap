@@ -2,9 +2,13 @@
 
 # NOTE: this is skipping "ssl" tasks by default.
 # Setting up SSL certificates requires a running HTTP server.
+
+set -e
+
 cd "$(dirname "$0")/.."
+
 exec ansible-playbook \
   --inventory=raspberries \
   --skip-tags "ssl" \
   base.yml \
-  $@
+  "$@"
