@@ -1,5 +1,5 @@
 ---
 nextcloud_com:
   releases_url: https://download.nextcloud.com/server/releases/nextcloud
-  version: 17.0.2
+  version: 17.0.3
 php_version: '7.3'
