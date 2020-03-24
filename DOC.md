@@ -19,3 +19,9 @@ Once you have the partition, format it:
 `-E` preserves the environment and keeps the configured `vimrc`:
 
     sudo -E vim <path-to-file>
+
+## Run `occ` commands
+
+In `nextcloud` directory:
+
+    sudo -u www-data php occ <command>
