@@ -4,4 +4,3 @@
     name: spocon
     state: restarted
   become: yes
-
