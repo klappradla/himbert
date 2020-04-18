@@ -1,0 +1,32 @@
+---
+- name: add spocon repository to packages list
+  apt_repository:
+    repo: deb http://ppa.launchpad.net/spocon/spocon/ubuntu bionic main
+    state: present
+    filename: spocon
+  become: yes
+  tags: spotify
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+  tags: spotify
+
+- name: install spocon package
+  apt:
+    pkg: spocon
+    state: present
+  become: yes
+  tags: spotify
+
+- name: configure spocon
+  ini_file:
+    path: /opt/spocon/config.toml
+    section: null
+    option: deviceName
+    value: '"{{ inventory_hostname }}"'
+  become: yes
+  notify:
+    - restart spocon
+  tags: spotify
