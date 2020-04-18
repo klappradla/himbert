@@ -6,10 +6,10 @@ Current raspberries:
 
 | host            | pi | connection | task                                     |
 |-----------------|----|------------|------------------------------------------|
-| 🍇 **himbert**  | 4  | LAN        | runs [Nextcloud](https://nextcloud.com/) |
-| 💽 **beatbert** | 3b | WIFI       | runs Spotify connect                     |
+| **🍇 himbert**  | 4  | LAN        | runs [Nextcloud](https://nextcloud.com/) |
+| **💽 beatbert** | 3b | WIFI       | runs Spotify connect                     |
 
-## Getting Started
+## Getting Started 🎒
 
 1. Install [`ansible`](https://www.ansible.com/)
 
@@ -37,7 +37,7 @@ Current raspberries:
 
         cp host_vars/hostname.yml.example host_vars/<hostname>.yml
 
-## Running
+## Running 🏃
 
 1. Run core setup:
 
@@ -51,9 +51,9 @@ Current raspberries:
 
         bin/update
 
-## Tips & Tricks
+## Tips & Tricks ⚙️
 
-### Updating
+### Updating ✨
 
 Run in _"check"_ mode first to see changes:
 
@@ -63,7 +63,7 @@ Alternatively, only run the check on certain groups, e.g.:
 
     bin/update --limit wifiberries --check
 
-### Linting
+### Linting 💅
 
 Use [ansible lint](https://docs.ansible.com/ansible-lint/) to check for bad practices in the playbook.
 
