@@ -1,5 +1,8 @@
 # ansible inventory file
 
-[raspberries]
+[lanberries]
 himbert ansible_host=192.168.178.51 ansible_user=pi
 # erdbert ansible_host=192.168.178.48 ansible_user=pi
+
+[wifiberries]
+beatbert ansible_host=192.168.178.21 ansible_user=pi
