@@ -1,12 +1,21 @@
 ---
 # ansible playbook
 
-- hosts: raspberries
+- hosts: lanberries
   roles:
     - locale
     - essentials
     - dyn_dns
     - nextcloud
+  vars:
+    home: '{{ ansible_env.HOME }}'
+    user: '{{ ansible_env.USER }}'
+
+- hosts: wifiberries
+  roles:
+    - locale
+    - essentials
+    - spotify
   vars:
     home: '{{ ansible_env.HOME }}'
     user: '{{ ansible_env.USER }}'
