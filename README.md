@@ -2,7 +2,12 @@
 
 Ansible setup for my personal Raspberry Pis.
 
-_Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberry Pi._
+Current raspberries:
+
+| host            | pi | connection | task                                     |
+|-----------------|----|------------|------------------------------------------|
+| 🍇 **himbert**  | 4  | LAN        | runs [Nextcloud](https://nextcloud.com/) |
+| 💽 **beatbert** | 3b | WIFI       | runs Spotify connect                     |
 
 ## Getting Started
 
@@ -16,7 +21,11 @@ _Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberr
 
     1. [Enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) by placing an empty `ssh` file in the `boot` directory of the disk
 
-    1. Plug an `ext4` formatted external harddrive into the Pi
+    1. _(optional)_ Plug an `ext4` formatted external harddrive into the Pi
+
+    1. _(optional)_ [Configure WIFI](./DOC.md#set-up-wifi-for-a-pi) for the Pi
+
+    1. Boot up your Pi _(and connect to LAN if necessary)_
 
     1. Add your ssh key to the Pi for password-less setup
 
@@ -42,7 +51,6 @@ _Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberr
 
         bin/update
 
-
 ## Tips & Tricks
 
 ### Updating
@@ -50,6 +58,10 @@ _Opinionated setup for running [Nextcloud](https://nextcloud.com/) on a Raspberr
 Run in _"check"_ mode first to see changes:
 
     bin/update --check
+
+Alternatively, only run the check on certain groups, e.g.:
+
+    bin/update --limit wifiberries --check
 
 ### Linting
 
