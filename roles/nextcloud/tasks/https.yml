@@ -4,7 +4,7 @@
     path: '/etc/letsencrypt/live/{{ pi.domain }}'
   become: yes
   register: ssl_dir
-  tags: [nextcloud, nginx, ssl]
+  tags: [nextcloud, nginx, ssl, update]
 
 - name: stop nginx (to free ports)
   service:
@@ -12,7 +12,7 @@
     state: stopped
   become: yes
   when: ssl_dir.stat.isdir is not defined or not ssl_dir.stat.isdir
-  tags: [nextcloud, nginx, ssl]
+  tags: [nextcloud, nginx, ssl, update]
 
 - name: add certificate
   command: certbot certonly -d {{ pi.domain }} --email {{ ssl.email }} --standalone --noninteractive --agree-tos
@@ -20,7 +20,7 @@
     creates: '/etc/letsencrypt/live/{{ pi.domain }}'
   become: yes
   when: ssl_dir.stat.isdir is not defined or not ssl_dir.stat.isdir
-  tags: [nextcloud, ssl]
+  tags: [nextcloud, ssl, update]
 
 - name: add config for nextcloud page
   template:
@@ -29,28 +29,28 @@
   notify:
     - reload nginx
   become: yes
-  tags: [nextcloud, nginx, ssl]
+  tags: [nextcloud, nginx, ssl, update]
 
 - name: start nginx again
   service:
     name: nginx
     state: started
   become: yes
-  tags: [nextcloud, nginx, ssl]
+  tags: [nextcloud, nginx, ssl, update]
 
 - name: add certbot renewal service
   template:
     src: systemd/certbot_renewal.service.j2
     dest: /etc/systemd/system/certbot_renewal.service
   become: yes
-  tags: [nextcloud, ssl, systemd]
+  tags: [nextcloud, ssl, systemd, update]
 
 - name: add certbot renewal timer
   template:
     src: systemd/certbot_renewal.timer.j2
     dest: /etc/systemd/system/certbot_renewal.timer
   become: yes
-  tags: [nextcloud, ssl, systemd]
+  tags: [nextcloud, ssl, systemd, update]
 
 - name: start certbot renewal timer
   systemd:
@@ -58,5 +58,5 @@
     state: started
     enabled: yes
   become: yes
-  tags: [nextcloud, ssl, systemd]
+  tags: [nextcloud, ssl, systemd, update]
 
