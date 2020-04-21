@@ -3,9 +3,3 @@
 os:
   timezone: Europe/Berlin
   locale: en_US.UTF-8
-
-# default variables
-# for example git:
-git:
-  username: pi
-  useremail: pi@raspberrypi
