@@ -20,12 +20,23 @@
   become: yes
   tags: spotify
 
-- name: configure spocon
+- name: configure spocon name
   ini_file:
     path: /opt/spocon/config.toml
     section: null
     option: deviceName
     value: '"{{ inventory_hostname }}"'
+  become: yes
+  notify:
+    - restart spocon
+  tags: spotify
+
+- name: configure spocon mixer backend
+  ini_file:
+    path: /opt/spocon/config.toml
+    section: player
+    option: "\tmixerSearchKeywords"
+    value: '"ALSA"'
   become: yes
   notify:
     - restart spocon
