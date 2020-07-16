@@ -16,7 +16,7 @@
 - name: install spocon package
   apt:
     pkg: spocon
-    state: present
+    state: latest
   become: yes
   tags: spotify
 
