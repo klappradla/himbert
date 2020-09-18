@@ -40,6 +40,15 @@
   become: yes
   tags: [shairport]
 
+- name: update configuration file for shairport sync
+  template:
+    src: shairport-sync.conf
+    dest: /etc/shairport-sync.conf
+  become: yes
+  notify:
+    - restart shairport-sync
+  tags: [shairport]
+
 - name: start shairport-sync service
   systemd:
     name: shairport-sync
