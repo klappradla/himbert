@@ -1,0 +1,50 @@
+---
+- name: install packages
+  import_tasks: packages.yml
+
+- name: download shairport sync
+  git:
+    repo: https://github.com/mikebrady/shairport-sync.git
+    dest: "{{ home }}/.shairport-sync"
+    update: yes
+  tags: [shairport]
+
+- name: autoconf shairport sync
+  command: autoreconf -i -f
+  args:
+    chdir: "{{ home }}/.shairport-sync"
+  tags: [shairport]
+
+- name: configure shairport sync
+  command: >
+    ./configure --sysconfdir=/etc
+                --with-alsa
+                --with-pa
+                --with-avahi
+                --with-ssl=openssl
+                --with-metadata
+                --with-systemd
+  args:
+    chdir: "{{ home }}/.shairport-sync"
+  tags: [shairport]
+
+- name: make shairport sync
+  make:
+    chdir: "{{ home }}/.shairport-sync"
+  tags: [shairport]
+
+- name: install shairport sync
+  make:
+    target: install
+    chdir: "{{ home }}/.shairport-sync"
+  become: yes
+  tags: [shairport]
+
+- name: start shairport-sync service
+  systemd:
+    name: shairport-sync
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  become: yes
+  tags: [shairport]

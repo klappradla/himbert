@@ -1,0 +1,53 @@
+---
+- name: install basic packages
+  apt:
+    state: present
+    pkg:
+      - git
+      - build-essential
+      - xmltoman
+  become: yes
+  tags: [shairport, packages]
+
+- name: install build packages
+  apt:
+    state: present
+    pkg:
+      - autoconf
+      - automake
+      - libtool
+      - libdaemon-dev
+      - libpopt-dev
+      - libconfig-dev
+  become: yes
+  tags: [shairport, packages]
+
+- name: install ALSA libraries
+  apt:
+    state: present
+    pkg: libasound2-dev
+  become: yes
+  tags: [shairport, packages]
+
+- name: install PULSEAudio libraries
+  apt:
+    state: present
+    pkg: libpulse-dev
+  become: yes
+  tags: [shairport, packages]
+
+- name: install Avahi packages
+  apt:
+    state: present
+    pkg:
+      - avahi-daemon
+      - libavahi-client-dev
+  become: yes
+  tags: [shairport, packages]
+
+- name: install openSSL packages
+  apt:
+    state: present
+    pkg: libssl-dev
+  become: yes
+  tags: [shairport, packages]
