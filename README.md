@@ -4,10 +4,13 @@ Ansible setup for my personal Raspberry Pis.
 
 Current raspberries:
 
-| host            | pi | connection | task                                     |
-|-----------------|----|------------|------------------------------------------|
-| **🍇 himbert**  | 4  | LAN        | runs [Nextcloud](https://nextcloud.com/) |
-| **💽 beatbert** | 3b | WIFI       | runs Spotify connect                     |
+| host            | pi | connection | task                                           |
+|-----------------|----|------------|------------------------------------------------|
+| **🍇 himbert**  | 4  | LAN        | runs [Nextcloud](https://nextcloud.com/)       |
+| **💽 beatbert** | 3b | WIFI       | runs [Spotify Connect][1], [Shairport-Sync][2] |
+
+[1]: https://www.spotify.com/us/connect/
+[2]: https://github.com/mikebrady/shairport-sync
 
 ## Getting Started 🎒
 
