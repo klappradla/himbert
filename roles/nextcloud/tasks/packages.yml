@@ -43,6 +43,8 @@
       - 'php{{ php_version }}-pgsql'
       - 'php{{ php_version }}-json'
       - 'php{{ php_version }}-bz2'
+      - 'php{{ php_version }}-bcmath'
+      - 'php{{ php_version }}-gmp'
       - php-imagick
   become: yes
   tags: [nextcloud, packages]
