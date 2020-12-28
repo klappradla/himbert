@@ -36,7 +36,7 @@
     path: /opt/spocon/config.toml
     section: player
     option: "\tmixerSearchKeywords"
-    value: '"ALSA"'
+    value: '""'
   become: yes
   notify:
     - restart spocon
