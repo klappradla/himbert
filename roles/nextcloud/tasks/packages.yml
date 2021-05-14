@@ -15,7 +15,7 @@
 - name: install dev packages
   apt:
     state: present
-    pkg: python-psycopg2
+    pkg: python3-psycopg2
   become: yes
   tags: [nextcloud, packages, postgres]
 

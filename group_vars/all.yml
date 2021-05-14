@@ -3,3 +3,4 @@
 os:
   timezone: Europe/Berlin
   locale: en_US.UTF-8
+ansible_python_interpreter: /usr/bin/python3

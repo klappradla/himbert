@@ -68,4 +68,4 @@ Ansible specific tips and tricks.
 
 Point ansible to the Python3 interpreter on the external host. For example:
 
-    bin/update --limit wifiberries -e ansible_python_interpreter=/usr/bin/python3 --check
+    bin/update --limit wifiberries --check
