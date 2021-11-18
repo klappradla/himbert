@@ -50,8 +50,14 @@ server {
     }
 
     # set max upload size
-    client_max_body_size 5G;
+    client_max_body_size 16G;
     fastcgi_buffers 64 4K;
+
+    # increase read timeout
+    fastcgi_read_timeout 3600s;
+
+    # turn of request buffering (help with upload timeouts)
+    fastcgi_request_buffering off;
 
     # Enable gzip but do not remove ETag headers
     gzip on;
@@ -89,7 +95,6 @@ server {
         fastcgi_param front_controller_active true;
         fastcgi_pass php-handler;
         fastcgi_intercept_errors on;
-        fastcgi_request_buffering off;
     }
 
     location ~ ^\/(?:updater|oc[ms]-provider)(?:$|\/) {

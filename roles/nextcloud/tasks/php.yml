@@ -35,6 +35,10 @@
     - { section: 'opcache', option: 'opcache.save_comments', value: 1 }
     - { section: 'opcache', option: 'opcache.revalidate_freq', value: 1 }
     - { section: 'PHP', option: 'memory_limit', value: '512M' }
+    - { section: 'PHP', option: 'upload_max_filesize', value: '16G' }
+    - { section: 'PHP', option: 'post_max_size', value: '16G' }
+    - { section: 'PHP', option: 'max_input_timeout', value: '3600' }
+    - { section: 'PHP', option: 'max_execution_time', value: '3600' }
   become: yes
   notify:
     - restart php-fpm
