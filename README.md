@@ -44,7 +44,7 @@ Current raspberries:
 
 1. Run core setup:
 
-        bin/bootstrap
+        script/bootstrap
 
     _Note: this skips steps that need manual preparation (e.g. generating SSL certificates)._
 
@@ -52,7 +52,7 @@ Current raspberries:
 
 1. Finalize setup
 
-        bin/update
+        script/update
 
 ## Tips & Tricks ⚙️
 
@@ -60,11 +60,11 @@ Current raspberries:
 
 Run in _"check"_ mode first to see changes:
 
-    bin/update --check
+    script/update --check
 
 Alternatively, only run the check on certain groups, e.g.:
 
-    bin/update --limit wifiberries --check
+    script/update --limit wifiberries --check
 
 ### Linting 💅
 
