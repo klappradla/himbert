@@ -62,9 +62,13 @@ Run in _"check"_ mode first to see changes:
 
     script/update --check
 
-Alternatively, only run the check on certain groups, e.g.:
+Alternatively, only run the check on certain groups or hosts, e.g.:
 
     script/update --limit wifiberries --check
+
+    # or
+
+    script/update --limit beatbert --check
 
 ### Linting 💅
 
