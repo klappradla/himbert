@@ -3,9 +3,12 @@
 # NOTE: this is skipping "update" tasks by default.
 # Setting up SSL certificates requires a running HTTP server.
 
-set -e
+set -o errexit
+set -o pipefail
+set -o nounset
 
-cd "$(dirname "$0")/.."
+SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
+cd "$SCRIPTDIR/.."
 
 exec ansible-playbook \
   --inventory=raspberries \
