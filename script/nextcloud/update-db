@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
+cd "$SCRIPTDIR/../.."
+
+exec ansible \
+  all \
+  --inventory raspberries \
+  --limit himbert \
+  --module-name shell \
+  --args "sudo -u www-data php /var/www/nextcloud/occ db:add-missing-indices" \
+  --user pi \
+  --become
