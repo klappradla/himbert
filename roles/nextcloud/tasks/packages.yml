@@ -9,6 +9,7 @@
       - curl
       - libcurl4
       - ffmpeg
+      - libmagickcore-6.q16-3-extra
   become: yes
   tags: [nextcloud, packages]
 
