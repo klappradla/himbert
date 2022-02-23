@@ -14,6 +14,12 @@
     state: reloaded
   become: yes
 
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+  become: yes
+
 - name: restart php-fpm
   service:
     name: 'php{{ php_version }}-fpm'
