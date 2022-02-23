@@ -5,7 +5,7 @@ Ansible setup for my personal Raspberry Pis.
 Current raspberries:
 
 | host            | pi | connection | task                                           |
-|-----------------|----|------------|------------------------------------------------|
+|:----------------|:---|:-----------|:-----------------------------------------------|
 | **💾 himbert**  | 4  | LAN        | runs [Nextcloud](https://nextcloud.com/)       |
 | **💽 beatbert** | 3b | WIFI       | runs [Spotify Connect][1], [Shairport-Sync][2] |
 
@@ -16,7 +16,9 @@ Current raspberries:
 
 1. Install [`ansible`](https://www.ansible.com/)
 
-        brew install ansible
+    ```bash
+    brew install ansible
+    ```
 
 1. Prepare Raspberry Pis
 
@@ -32,19 +34,25 @@ Current raspberries:
 
     1. Add your ssh key to the Pi for password-less setup
 
-            ssh-copy-id pi@raspberrypi.local
+          ```bash
+          ssh-copy-id pi@raspberrypi.local
+          ```
 
-        *default password: `raspberry`*
+        _default password: `raspberry`_
 
 1. Copy and adapt _host-specific_ configuration for every hosts:
 
-        cp host_vars/hostname.yml.example host_vars/<hostname>.yml
+      ```bash
+      cp host_vars/hostname.yml.example host_vars/<hostname>.yml
+      ```
 
 ## Running 🏃
 
 1. Run core setup:
 
-        script/bootstrap
+    ```bash
+    script/bootstrap
+    ```
 
     _Note: this skips steps that need manual preparation (e.g. generating SSL certificates)._
 
@@ -52,7 +60,9 @@ Current raspberries:
 
 1. Finalize setup
 
-        script/update
+    ```bash
+    script/update
+    ```
 
 ## Tips & Tricks ⚙️
 
@@ -60,15 +70,19 @@ Current raspberries:
 
 Run in _"check"_ mode first to see changes:
 
-    script/update --check
+```bash
+script/update --check
+```
 
 Alternatively, only run the check on certain groups or hosts, e.g.:
 
-    script/update --limit wifiberries --check
+```bash
+script/update --limit wifiberries --check
 
-    # or
+# or
 
-    script/update --limit beatbert --check
+script/update --limit beatbert --check
+```
 
 ### Linting 💅
 
@@ -76,10 +90,17 @@ Use [ansible lint](https://docs.ansible.com/ansible-lint/) to check for bad prac
 
 Install the CLI tool:
 
-    pip3 install ansible-lint
+```bash
+brew install ansible-lint
+
+# probably needs linking
+brew link ansible-lint
+```
 
 Run the linter on the playbook:
 
-    ansible-lint base.yml
+```bash
+script/lint
+```
 
 See [docs](DOC.md) for some useful tips.
