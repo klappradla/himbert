@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
+
+# shellcheck source=SCRIPTDIR/lib/helpers
+source "$SCRIPTDIR/lib/helpers"
+
+cd "$SCRIPTDIR/.."
+
+info "Formatting Markdown…"
+npx prettier --write '**/*.md'
