@@ -1,4 +1,15 @@
 ---
+- name: Enable APCu for Nextcloud cron jobs
+  ini_file:
+    path: '/etc/php/{{ php_version }}/mods-available/apcu.ini'
+    section: ''
+    option: apc.enable_cli
+    value: 1
+  become: yes
+  notify:
+    - restart nginx
+  tags: [nextcloud, cron, php]
+
 - name: add nextcloud cron service
   template:
     src: systemd/nextcloudcron.service.j2
