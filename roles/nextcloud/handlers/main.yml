@@ -25,3 +25,9 @@
     name: 'php{{ php_version }}-fpm'
     state: restarted
   become: yes
+
+- name: restart postgres
+  service:
+    name: postgresql
+    state: restarted
+  become: yes

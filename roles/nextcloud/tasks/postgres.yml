@@ -1,5 +1,42 @@
 ---
-- name: change password for postgres user
+- name: Collect Postgres version
+  postgresql_info:
+    filter: ver*
+  register: postgres_info_result
+  become: yes
+  tags: [nextcloud, postgres]
+
+- name: Debug Postgres version
+  debug:
+    msg: 'Running Postgres version: {{ postgres_info_result.version.major }}'
+  tags: [nextcloud, postgres]
+  when: postgres_info_result.version.major is defined
+
+- name: Set postgres user authentication method to md5
+  postgresql_pg_hba:
+    dest: '/etc/postgresql/{{ postgres_info_result.version.major }}/main/pg_hba.conf'
+    contype: local
+    databases: all
+    users: postgres
+    method: md5
+  become: yes
+  notify:
+    - restart postges
+  tags: [nextcloud, postgres]
+
+- name: Set all user authentication method to md5
+  postgresql_pg_hba:
+    dest: '/etc/postgresql/{{ postgres_info_result.version.major }}/main/pg_hba.conf'
+    contype: local
+    databases: all
+    users: all
+    method: md5
+  become: yes
+  notify:
+    - restart postges
+  tags: [nextcloud, postgres]
+
+- name: Change password for postgres user
   postgresql_user:
     db: postgres
     user: postgres
@@ -10,7 +47,7 @@
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]
 
-- name: create nextcloud database user
+- name: Create user for Nextcloud database
   postgresql_user:
     user: '{{ postgres.nextcloud.db_user }}'
     password: '{{ postgres.nextcloud.db_password }}'
@@ -21,7 +58,7 @@
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]
 
-- name: create nextcloud database
+- name: Create database for Nextcloud
   postgresql_db:
     name: '{{ postgres.nextcloud.db_name }}'
     owner: '{{ postgres.nextcloud.db_user }}'
@@ -30,4 +67,3 @@
   vars:
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]
-
