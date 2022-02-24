@@ -11,13 +11,13 @@ sudo fdisk -l
 Go into `fdisk` and create the partition:
 
 ```bash
-sudo fdisk /dev/sdb
+sudo fdisk /dev/sda
 ```
 
 Once you have the partition, format it:
 
 ```bash
-sudo mkfs.ext4 /dev/sdb1
+sudo mkfs.ext4 /dev/sda1
 ```
 
 ## Set up WIFI for a Pi
