@@ -4,4 +4,3 @@
     name: shairport-sync
     state: restarted
   become: yes
-

@@ -15,7 +15,6 @@
   roles:
     - locale
     - essentials
-    - spotify
     - shairport-sync
   vars:
     home: '{{ ansible_env.HOME }}'
