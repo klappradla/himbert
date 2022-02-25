@@ -1,5 +1,5 @@
 ---
-- name: Collect Postgres version
+- name: Retrieve Postgres version
   postgresql_info:
     filter: ver*
   register: postgres_info_result
