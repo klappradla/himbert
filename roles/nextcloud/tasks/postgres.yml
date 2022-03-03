@@ -21,7 +21,7 @@
     method: md5
   become: yes
   notify:
-    - restart postges
+    - restart postgres
   tags: [nextcloud, postgres]
 
 - name: Set all user authentication method to md5
