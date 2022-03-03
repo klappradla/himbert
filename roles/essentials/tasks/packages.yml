@@ -23,6 +23,7 @@
     pkg:
       - vim
       - htop
+      - jq
   become: yes
   tags: packages
 
