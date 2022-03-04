@@ -49,3 +49,10 @@
       - php-imagick
   become: yes
   tags: [nextcloud, packages]
+
+- name: Install acl filesystem for unprivileged users
+  apt:
+    state: present
+    pkg: acl
+  become: yes
+  tags: [nextcloud, packages]
