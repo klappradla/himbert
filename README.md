@@ -4,10 +4,10 @@ Ansible setup for my personal Raspberry Pis.
 
 Current raspberries:
 
-| host            | pi  | connection | task                                                               |
-| :-------------- | :-- | :--------- | :----------------------------------------------------------------- |
-| **💾 himbert**  | 4   | LAN        | runs [Nextcloud](https://nextcloud.com/)                           |
-| **💽 beatbert** | 3b  | WIFI       | runs [Shairport-Sync](https://github.com/mikebrady/shairport-sync) |
+| host             | pi  | connection | task                                                               |
+| :--------------- | :-- | :--------- | :----------------------------------------------------------------- |
+| **☁️  cloudbert** | 4   | LAN        | runs [Nextcloud](https://nextcloud.com/)                           |
+| **💽 beatbert**  | 3b  | WIFI       | runs [Shairport-Sync](https://github.com/mikebrady/shairport-sync) |
 
 ## Getting Started 🎒
 
