@@ -13,18 +13,6 @@
   tags: [nextcloud, postgres]
   when: postgres_info_result.version.major is defined
 
-# - name: Set postgres user authentication method to md5
-#   postgresql_pg_hba:
-#     dest: '/etc/postgresql/{{ postgres_info_result.version.major }}/main/pg_hba.conf'
-#     contype: local
-#     databases: all
-#     users: postgres
-#     method: md5
-#   become: yes
-#   notify:
-#     - restart postgres
-#   tags: [nextcloud, postgres]
-
 - name: Set all user authentication method to md5
   postgresql_pg_hba:
     dest: '/etc/postgresql/{{ postgres_info_result.version.major }}/main/pg_hba.conf'

@@ -10,7 +10,7 @@ cd "$SCRIPTDIR/../.."
 exec ansible \
   all \
   --inventory raspberries \
-  --limit himbert \
+  --limit cloudbert \
   --module-name shell \
   --args "sudo -u www-data php /var/www/nextcloud/occ db:add-missing-indices" \
   --user pi \
