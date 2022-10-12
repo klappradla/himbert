@@ -19,7 +19,7 @@ Current raspberries:
 
 1. Prepare Raspberry Pis
 
-   1. [Download](https://www.raspberrypi.com/software/) and [install](https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-images-on-mac-os) Raspbian Lite on Raspberry Pi
+   1. Install [Raspberry Pi OS light](https://www.raspberrypi.com/software/)
 
    1. [Enable ssh](https://www.raspberrypi.org/documentation/remote-access/ssh/) by placing an empty `ssh` file in the `boot` directory of the disk
 
