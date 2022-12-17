@@ -1,31 +1,129 @@
 ---
-- name: Uninstall shairport-sync package
-  apt:
-    state: absent
-    pkg: shairport-sync
-  become: yes
+- name: Set alsa volume to 100%
+  ansible.builtin.raw: amixer set 'Headphone' 100%
+  tags: [shairport-sync]
+
+- name: Install necessary libraries
+  ansible.builtin.apt:
+    pkg:
+      - build-essential
+      - git
+      - autoconf
+      - automake
+      - libtool
+      - libpopt-dev
+      - libconfig-dev
+      - libasound2-dev
+      - avahi-daemon
+      - libavahi-client-dev
+      - libssl-dev
+      - libsoxr-dev
+      - libplist-dev
+      - libsodium-dev
+      - libavutil-dev
+      - libavcodec-dev
+      - libavformat-dev
+      - uuid-dev
+      - libgcrypt-dev
+      - xxd
+    state: present
+    install_recommends: false
+  become: true
   tags: [shairport-sync, packages]
 
-- name: Set alsa volume to 100%
-  raw: amixer set 'Headphone' 100%
+- name: Clone nqptp repo
+  ansible.builtin.git:
+    repo: 'https://github.com/mikebrady/nqptp.git'
+    dest: "{{ home }}/nqptp"
+    clone: true
+    update: true
+  tags: [shairport-sync, nqptp]
+
+- name: Configure nqptp setup
+  ansible.builtin.shell:
+    cmd: autoreconf -fi && ./configure --with-systemd-startup
+    chdir: "{{ home }}/nqptp/"
+  tags: [shairport-sync, nqptp]
+
+- name: Prepare installation Install nqptp
+  community.general.make:
+    chdir: "{{ home }}/nqptp/"
+  tags: [shairport-sync, nqptp]
+
+- name: Install nqptp
+  community.general.make:
+    chdir: nqptp
+    target: install
+  become: true
+  tags: [shairport-sync, nqptp]
+
+- name: Enable nqptp service
+  ansible.builtin.systemd:
+    name: nqptp
+    enabled: true
+  become: true
+  tags: [shairport-sync, nqptp]
+
+- name: Start nqptp service
+  ansible.builtin.systemd:
+    name: nqptp
+    state: started
+  become: true
+  tags: [shairport-sync, nqptp]
+
+- name: Clone shairport-sync repo
+  ansible.builtin.git:
+    repo: 'https://github.com/mikebrady/shairport-sync.git'
+    dest: "{{ home }}/shairport-sync"
+    clone: true
+    update: true
   tags: [shairport-sync]
 
-- name: Remove shairport-sync config
-  ansible.builtin.file:
-    path: /etc/shairport-sync.conf
-    state: absent
-  become: yes
+- name: Configure shairport-sync installation
+  ansible.builtin.shell:
+    cmd: |
+      autoreconf -fi && ./configure --sysconfdir=/etc \
+                                    --with-alsa \
+                                    --with-soxr \
+                                    --with-avahi \
+                                    --with-ssl=openssl \
+                                    --with-systemd \
+                                    --with-airplay-2
+    chdir: "{{ home }}/shairport-sync/"
   tags: [shairport-sync]
 
-- name: Remove shairport-sync service
-  ansible.builtin.file:
-    path: '{{ item }}'
-    state: absent
-  loop:
-    - '/etc/systemd/system/shairport-sync.service'
-    - '/etc/systemd/user/shairport-sync.service'
-    - '/lib/systemd/system/shairport-sync.service'
-    - '/lib/systemd/user/shairport-sync.service'
-    - '/etc/init.d/shairport-sync'
-  become: yes
+- name: Prepare shairport-sync installation
+  community.general.make:
+    chdir: "{{ home }}/shairport-sync/"
   tags: [shairport-sync]
+
+- name: Install shairport-sync
+  community.general.make:
+    chdir: shairport-sync
+    target: install
+  become: true
+  tags: [shairport-sync]
+
+- name: Configure shairport-sync
+  ansible.builtin.template:
+    src: shairport-sync.conf
+    dest: /etc/shairport-sync.conf
+  become: true
+  notify:
+    - restart shairport-sync
+  tags: [shairport-sync]
+
+- name: Start shairport-sync service
+  ansible.builtin.systemd:
+    name: shairport-sync
+    state: started
+    enabled: true
+    daemon_reload: true
+  become: true
+  tags: [shairport-sync, systemd]
+
+- name: Turn off power management for wifi
+  ansible.builtin.shell:
+    cmd: iwconfig wlan0 power off
+  become: true
+  tags: [shairport-sync, wifi]
