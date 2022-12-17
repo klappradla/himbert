@@ -1,7 +1,7 @@
 ---
-- name: Install shairport-sync package
+- name: Uninstall shairport-sync package
   apt:
-    state: present
+    state: absent
     pkg: shairport-sync
   become: yes
   tags: [shairport-sync, packages]
@@ -10,22 +10,22 @@
   raw: amixer set 'Headphone' 100%
   tags: [shairport-sync]
 
-- name: Configure shairport-sync
-  template:
-    src: shairport-sync.conf
-    dest: /etc/shairport-sync.conf
+- name: Remove shairport-sync config
+  ansible.builtin.file:
+    path: /etc/shairport-sync.conf
+    state: absent
   become: yes
-  notify:
-    - restart shairport-sync
   tags: [shairport-sync]
 
-- name: Start shairport-sync service
-  systemd:
-    name: shairport-sync
-    state: started
-    enabled: yes
-    daemon_reload: yes
+- name: Remove shairport-sync service
+  ansible.builtin.file:
+    path: '{{ item }}'
+    state: absent
+  loop:
+    - '/etc/systemd/system/shairport-sync.service'
+    - '/etc/systemd/user/shairport-sync.service'
+    - '/lib/systemd/system/shairport-sync.service'
+    - '/lib/systemd/user/shairport-sync.service'
+    - '/etc/init.d/shairport-sync'
   become: yes
-  notify:
-    - reboot pi
-  tags: [shairport-sync, systemd]
+  tags: [shairport-sync]
