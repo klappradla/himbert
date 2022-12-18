@@ -1,0 +1,6 @@
+---
+- name: Restart shairport-sync
+  ansible.legacy.service:
+    name: shairport-sync
+    state: restarted
+  become: true
