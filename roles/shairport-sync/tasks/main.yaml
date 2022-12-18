@@ -39,13 +39,13 @@
     update: true
   tags: [shairport-sync, nqptp]
 
-- name: Configure nqptp setup
+- name: Configure nqptp installation
   ansible.builtin.shell:
     cmd: autoreconf -fi && ./configure --with-systemd-startup
     chdir: "{{ home }}/nqptp/"
   tags: [shairport-sync, nqptp]
 
-- name: Prepare installation Install nqptp
+- name: Prepare nqptp installation
   community.general.make:
     chdir: "{{ home }}/nqptp/"
   tags: [shairport-sync, nqptp]
@@ -62,14 +62,14 @@
     name: nqptp
     enabled: true
   become: true
-  tags: [shairport-sync, nqptp]
+  tags: [shairport-sync, nqptp, systemd]
 
 - name: Start nqptp service
   ansible.builtin.systemd:
     name: nqptp
     state: started
   become: true
-  tags: [shairport-sync, nqptp]
+  tags: [shairport-sync, nqptp, systemd]
 
 - name: Clone shairport-sync repo
   ansible.builtin.git:

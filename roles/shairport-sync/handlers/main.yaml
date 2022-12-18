@@ -1,6 +1,6 @@
 ---
-- name: restart shairport-sync
+- name: Restart shairport-sync
   service:
     name: shairport-sync
     state: restarted
-  become: yes
+  become: true
