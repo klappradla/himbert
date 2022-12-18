@@ -123,7 +123,6 @@
   tags: [shairport-sync, systemd]
 
 - name: Turn off power management for wifi
-  ansible.builtin.shell:
-    cmd: iwconfig wlan0 power off
+  ansible.builtin.command: iwconfig wlan0 power off
   become: true
   tags: [shairport-sync, wifi]
