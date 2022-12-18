@@ -31,7 +31,7 @@
   become: true
   tags: [shairport-sync, packages]
 
-- name: Clone nqptp repo
+- name: Clone nqptp repo  # noqa: latest
   ansible.builtin.git:
     repo: 'https://github.com/mikebrady/nqptp.git'
     dest: "{{ home }}/nqptp"
@@ -71,7 +71,7 @@
   become: true
   tags: [shairport-sync, nqptp, systemd]
 
-- name: Clone shairport-sync repo
+- name: Clone shairport-sync repo  # noqa: latest
   ansible.builtin.git:
     repo: 'https://github.com/mikebrady/shairport-sync.git'
     dest: "{{ home }}/shairport-sync"
