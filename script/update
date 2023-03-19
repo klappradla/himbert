@@ -8,6 +8,6 @@ SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
 cd "$SCRIPTDIR/.."
 
 exec ansible-playbook \
-  --inventory=raspberries \
-  base.yml \
+  --inventory=inventory.yaml \
+  playbook.yaml \
   "$@"

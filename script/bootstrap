@@ -11,7 +11,7 @@ SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
 cd "$SCRIPTDIR/.."
 
 exec ansible-playbook \
-  --inventory=raspberries \
+  --inventory=inventory.yaml \
   --skip-tags "update" \
-  base.yml \
+  playbook.yaml \
   "$@"

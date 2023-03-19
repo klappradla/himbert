@@ -1,6 +1,4 @@
 ---
-# ansible playbook
-
 - hosts: lanberries
   roles:
     - locale
