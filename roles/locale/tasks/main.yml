@@ -1,6 +1,6 @@
 ---
 - name: ensure locale exists
-  locale_gen:
+  community.general.locale_gen:
     name: '{{ os.locale }}'
     state: present
   become: yes

@@ -59,4 +59,3 @@
     enabled: yes
   become: yes
   tags: [nextcloud, ssl, systemd, update]
-

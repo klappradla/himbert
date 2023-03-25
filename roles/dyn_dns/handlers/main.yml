@@ -4,4 +4,3 @@
     name: ddclient
     state: restarted
   become: yes
-

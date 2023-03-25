@@ -9,7 +9,7 @@
   tags: [nextcloud, harddrive]
 
 - name: mount hdd
-  mount:
+  ansible.posix.mount:
     path: /hdd
     src: /dev/sda1
     fstype: ext4

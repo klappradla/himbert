@@ -1,6 +1,6 @@
 ---
 - name: Restart shairport-sync
-  ansible.legacy.service:
+  ansible.builtin.service:
     name: shairport-sync
     state: restarted
   become: true

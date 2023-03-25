@@ -1,6 +1,6 @@
 ---
 - name: Retrieve Postgres version
-  postgresql_info:
+  community.postgresql.postgresql_info:
     filter: ver*
   register: postgres_info_result
   become: yes
@@ -14,7 +14,7 @@
   when: postgres_info_result.version.major is defined
 
 - name: Set all user authentication method to md5
-  postgresql_pg_hba:
+  community.postgresql.postgresql_pg_hba:
     dest: '/etc/postgresql/{{ postgres_info_result.version.major }}/main/pg_hba.conf'
     contype: local
     databases: all
@@ -26,7 +26,7 @@
   tags: [nextcloud, postgres]
 
 - name: Change password for postgres user
-  postgresql_user:
+  community.postgresql.postgresql_user:
     db: postgres
     user: postgres
     password: '{{ postgres.postgres_user_password }}'
@@ -37,7 +37,7 @@
   tags: [nextcloud, postgres]
 
 - name: Create user for Nextcloud database
-  postgresql_user:
+  community.postgresql.postgresql_user:
     user: '{{ postgres.nextcloud.db_user }}'
     password: '{{ postgres.nextcloud.db_password }}'
     role_attr_flags: CREATEDB
@@ -48,7 +48,7 @@
   tags: [nextcloud, postgres]
 
 - name: Create database for Nextcloud
-  postgresql_db:
+  community.postgresql.postgresql_db:
     name: '{{ postgres.nextcloud.db_name }}'
     owner: '{{ postgres.nextcloud.db_user }}'
   become_user: postgres
