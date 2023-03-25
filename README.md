@@ -48,7 +48,7 @@ Current raspberries:
 1. Run core setup:
 
    ```bash
-   script/bootstrap
+   script/setup
    ```
 
    _Note: this skips steps that need manual preparation (e.g. generating SSL certificates)._

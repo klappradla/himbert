@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# NOTE: this is skipping "update" tasks by default.
-# Setting up SSL certificates requires a running HTTP server.
-
 set -o errexit
 set -o pipefail
 set -o nounset
@@ -10,8 +7,5 @@ set -o nounset
 SCRIPTDIR=$(cd "$(dirname "$0")"; pwd)
 cd "$SCRIPTDIR/.."
 
-exec ansible-playbook \
-  --inventory=inventory.yaml \
-  --skip-tags "update" \
-  playbook.yaml \
-  "$@"
+exec ansible-galaxy install \
+  --role-file requirements.yaml
