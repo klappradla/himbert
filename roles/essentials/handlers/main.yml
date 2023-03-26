@@ -1,5 +1,4 @@
 ---
-- name: reboot pi
-  reboot:
-  become: yes
-
+- name: Reboot pi
+  ansible.builtin.reboot:
+  become: true

@@ -1,19 +1,18 @@
 ---
-- name: install dyn dns client
-  apt:
+- name: Install dyn dns client
+  ansible.builtin.apt:
     state: present
     pkg:
       - ddclient
       - libio-socket-ssl-perl
-  become: yes
+  become: true
   tags: [dns]
 
-- name: add dyn dns client config
-  template:
+- name: Add dyn dns client config
+  ansible.builtin.template:
     src: ddclient.conf.j2
     dest: /etc/ddclient.conf
   notify:
     - restart ddclient deamon
-  become: yes
+  become: true
   tags: [dns]
-

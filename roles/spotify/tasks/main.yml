@@ -1,43 +1,43 @@
 ---
-- name: add spocon repository to packages list
-  apt_repository:
+- name: Add spocon repository to packages list
+  ansible.builtin.apt_repository:
     repo: deb http://ppa.launchpad.net/spocon/spocon/ubuntu bionic main
     state: present
     filename: spocon
-  become: yes
+  become: true
   tags: spotify
 
-- name: update apt cache
-  apt:
-    update_cache: yes
-  become: yes
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
   tags: spotify
 
-- name: install spocon package
-  apt:
+- name: Install spocon package
+  ansible.builtin.apt:
     pkg: spocon
     state: latest
-  become: yes
+  become: true
   tags: spotify
 
-- name: configure spocon name
-  ini_file:
+- name: Configure spocon name
+  community.general.ini_file:
     path: /opt/spocon/config.toml
     section: null
     option: deviceName
     value: '"{{ inventory_hostname }}"'
-  become: yes
+  become: true
   notify:
     - restart spocon
   tags: spotify
 
-- name: configure spocon mixer backend
-  ini_file:
+- name: Configure spocon mixer backend
+  community.general.ini_file:
     path: /opt/spocon/config.toml
     section: player
     option: "\tmixerSearchKeywords"
     value: '""'
-  become: yes
+  become: true
   notify:
     - restart spocon
   tags: spotify

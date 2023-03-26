@@ -1,33 +1,33 @@
 ---
-- name: extract nextcloud files into www
-  unarchive:
+- name: Extract nextcloud files into www
+  ansible.builtin.unarchive:
     src: "{{ nextcloud_archive.dest }}"
     dest: /var/www/
     owner: www-data
     group: www-data
-    remote_src: yes
-  become: yes
+    remote_src: true
+  become: true
 
-- name: reload nginx
-  service:
+- name: Reload nginx
+  ansible.builtin.service:
     name: nginx
     state: reloaded
-  become: yes
+  become: true
 
-- name: restart nginx
-  service:
+- name: Restart nginx
+  ansible.builtin.service:
     name: nginx
     state: restarted
-  become: yes
+  become: true
 
-- name: restart php-fpm
-  service:
+- name: Restart php-fpm
+  ansible.builtin.service:
     name: 'php{{ php_version }}-fpm'
     state: restarted
-  become: yes
+  become: true
 
-- name: restart postgres
-  service:
+- name: Restart postgres
+  ansible.builtin.service:
     name: postgresql
     state: restarted
-  become: yes
+  become: true

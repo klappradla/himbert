@@ -1,6 +1,6 @@
 ---
-- name: restart spocon
-  service:
+- name: Restart spocon
+  ansible.builtin.service:
     name: spocon
     state: restarted
-  become: yes
+  become: true

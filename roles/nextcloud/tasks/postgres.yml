@@ -3,12 +3,12 @@
   community.postgresql.postgresql_info:
     filter: ver*
   register: postgres_info_result
-  become: yes
+  become: true
   become_user: postgres
   tags: [nextcloud, postgres]
 
 - name: Debug Postgres version
-  debug:
+  ansible.builtin.debug:
     msg: 'Running Postgres version: {{ postgres_info_result.version.major }}'
   tags: [nextcloud, postgres]
   when: postgres_info_result.version.major is defined
@@ -20,7 +20,7 @@
     databases: all
     users: all
     method: md5
-  become: yes
+  become: true
   notify:
     - restart postgres
   tags: [nextcloud, postgres]
@@ -31,7 +31,7 @@
     user: postgres
     password: '{{ postgres.postgres_user_password }}'
   become_user: postgres
-  become: yes
+  become: true
   vars:
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]
@@ -42,7 +42,7 @@
     password: '{{ postgres.nextcloud.db_password }}'
     role_attr_flags: CREATEDB
   become_user: postgres
-  become: yes
+  become: true
   vars:
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]
@@ -52,7 +52,7 @@
     name: '{{ postgres.nextcloud.db_name }}'
     owner: '{{ postgres.nextcloud.db_user }}'
   become_user: postgres
-  become: yes
+  become: true
   vars:
     ansible_ssh_pipelining: true
   tags: [nextcloud, postgres]

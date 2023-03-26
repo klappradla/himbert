@@ -1,6 +1,6 @@
 ---
-- name: add vimrc
-  copy:
+- name: Add vimrc
+  ansible.builtin.copy:
     src: templates/dotfiles/vimrc
     dest: ~/.vimrc
   tags: dotfiles

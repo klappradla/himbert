@@ -1,20 +1,20 @@
 ---
-- name: add hostname file
-  template:
+- name: Add hostname file
+  ansible.builtin.template:
     src: hostname.j2
     dest: /etc/hostname
-  become: yes
+  become: true
   notify:
     - reboot pi
   tags: hostname
 
-- name: set external hostname
-  lineinfile:
+- name: Set external hostname  # noqa: no-tabs (the file is formatted with tabs)
+  ansible.builtin.lineinfile:
     path: /etc/hosts
     regexp: '^127\.0\.1\.1'
     line: "127.0.1.1\t{{ inventory_hostname }}"
   register: hostfile
-  become: yes
+  become: true
   notify:
     - reboot pi
   tags: hostname
