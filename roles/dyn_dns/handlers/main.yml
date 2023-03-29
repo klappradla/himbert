@@ -1,7 +1,6 @@
 ---
-- name: restart ddclient deamon
-  service:
+- name: Restart ddclient deamon
+  ansible.builtin.service:
     name: ddclient
     state: restarted
-  become: yes
-
+  become: true

@@ -1,10 +1,9 @@
 ---
-- name: manage apt packages
-  import_tasks: packages.yml
+- name: Manage apt packages
+  ansible.builtin.import_tasks: packages.yml
 
-- name: manage dotfiles
-  import_tasks: dotfiles.yml
+- name: Manage dotfiles
+  ansible.builtin.import_tasks: dotfiles.yml
 
-- name: update naming of the host
-  import_tasks: hostname.yml
-
+- name: Update naming of the host
+  ansible.builtin.import_tasks: hostname.yml

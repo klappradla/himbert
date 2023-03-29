@@ -1,26 +1,27 @@
 ---
-- name: download nextcloud
-  get_url:
+- name: Download nextcloud
+  ansible.builtin.get_url:
     url: "{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2"
     checksum: "sha256:{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2.sha256"
     dest: "{{ home }}"
-  check_mode: no
+  check_mode: false
   register: nextcloud_archive
   notify:
     - extract nextcloud files into www
   tags: [nextcloud, installation]
 
-- name: flush handlers
-  meta: flush_handlers
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
   tags: [nextcloud, installation]
 
-- name: check if nextcloud directory already exists
-  stat:
+- name: Check if nextcloud directory already exists
+  ansible.builtin.stat:
     path: /var/www/nextcloud
   register: nextcloud_dir
   tags: [nextcloud, installation]
 
-- debug:
+- name: Log info about nextcloud directory
+  ansible.builtin.debug:
     msg: nextcloud directory already exists
   when: nextcloud_dir.stat.exists
   tags: [nextcloud, installation]

@@ -1,6 +1,6 @@
 ---
-- name: install basic packages
-  apt:
+- name: Install basic packages
+  ansible.builtin.apt:
     state: present
     pkg:
       - git
@@ -10,27 +10,27 @@
       - libcurl4
       - ffmpeg
       - libmagickcore-6.q16-3-extra
-  become: yes
+  become: true
   tags: [nextcloud, packages]
 
-- name: install dev packages
-  apt:
+- name: Install dev packages
+  ansible.builtin.apt:
     state: present
     pkg: python3-psycopg2
-  become: yes
+  become: true
   tags: [nextcloud, packages, postgres]
 
-- name: install web services
-  apt:
+- name: Install web services
+  ansible.builtin.apt:
     state: present
     pkg:
       - nginx
       - postgresql
-  become: yes
+  become: true
   tags: [nextcloud, packages]
 
-- name: install php packages
-  apt:
+- name: Install php packages
+  ansible.builtin.apt:
     state: present
     pkg:
       - 'php{{ php_version }}-fpm'
@@ -47,12 +47,12 @@
       - 'php{{ php_version }}-bcmath'
       - 'php{{ php_version }}-gmp'
       - php-imagick
-  become: yes
+  become: true
   tags: [nextcloud, packages]
 
 - name: Install acl filesystem for unprivileged users
-  apt:
+  ansible.builtin.apt:
     state: present
     pkg: acl
-  become: yes
+  become: true
   tags: [nextcloud, packages]

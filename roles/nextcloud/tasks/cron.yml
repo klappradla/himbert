@@ -1,33 +1,33 @@
 ---
 - name: Enable APCu for Nextcloud cron jobs
-  ini_file:
+  community.general.ini_file:
     path: '/etc/php/{{ php_version }}/mods-available/apcu.ini'
     section: ''
     option: apc.enable_cli
     value: 1
-  become: yes
+  become: true
   notify:
     - restart nginx
   tags: [nextcloud, cron, php]
 
-- name: add nextcloud cron service
-  template:
+- name: Add nextcloud cron service
+  ansible.builtin.template:
     src: systemd/nextcloudcron.service.j2
     dest: /etc/systemd/system/nextcloudcron.service
-  become: yes
+  become: true
   tags: [nextcloud, cron, systemd]
 
-- name: add nextcloud cron timer
-  template:
+- name: Add nextcloud cron timer
+  ansible.builtin.template:
     src: systemd/nextcloudcron.timer.j2
     dest: /etc/systemd/system/nextcloudcron.timer
-  become: yes
+  become: true
   tags: [nextcloud, cron, systemd]
 
-- name: start nextcloud cron timer
-  systemd:
+- name: Start nextcloud cron timer
+  ansible.builtin.systemd:
     name: nextcloudcron.timer
     state: started
-    enabled: yes
-  become: yes
+    enabled: true
+  become: true
   tags: [nextcloud, cron, systemd]

@@ -13,4 +13,4 @@ cd "$SCRIPTDIR/.."
 
 has ansible-lint || abort "Requires ansible-lint (brew install ansible-lint)"
 
-ansible-lint base.yml
+ansible-lint playbook.yaml

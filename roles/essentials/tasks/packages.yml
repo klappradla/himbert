@@ -1,36 +1,35 @@
 ---
-- name: update apt cache
-  apt:
-    update_cache: yes
-  become: yes
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
   tags: packages
 
-- name: upgrade distro
-  apt:
+- name: Upgrade distro
+  ansible.builtin.apt:
     upgrade: dist
-  become: yes
+  become: true
   tags: packages
 
-- name: upgrade safe packages
-  apt:
+- name: Upgrade safe packages
+  ansible.builtin.apt:
     upgrade: safe
-  become: yes
+  become: true
   tags: packages
 
-- name: install essential packages
-  apt:
+- name: Install essential packages
+  ansible.builtin.apt:
     state: present
     pkg:
       - vim
       - htop
       - jq
-  become: yes
+  become: true
   tags: packages
 
-- name: remove unused packages and clean up cache
-  apt:
-    autoclean: yes
-    autoremove: yes
-  become: yes
+- name: Remove unused packages and clean up cache
+  ansible.builtin.apt:
+    autoclean: true
+    autoremove: true
+  become: true
   tags: packages
-

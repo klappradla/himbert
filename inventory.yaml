@@ -1,0 +1,11 @@
+---
+lanberries:
+  hosts:
+    cloudbert:
+      ansible_host: 192.168.178.51
+      ansible_user: pi
+wifiberries:
+  hosts:
+    beatbert:
+      ansible_host: 192.168.178.21
+      ansible_user: pi

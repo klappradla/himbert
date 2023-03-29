@@ -1,45 +1,45 @@
 ---
-- name: configure php-fpm
-  ini_file:
+- name: Configure php-fpm
+  community.general.ini_file:
     path: '/etc/php/{{ php_version }}/fpm/pool.d/www.conf'
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
   with_items:
-    - { section: 'www', option: 'pm', value: 'dynamic' }
-    - { section: 'www', option: 'pm.max_children', value: 120 }
-    - { section: 'www', option: 'pm.start_servers', value: 12 }
-    - { section: 'www', option: 'pm.min_spare_servers', value: 6 }
-    - { section: 'www', option: 'pm.max_spare_servers', value: 18 }
-    - { section: 'www', option: 'env[HOSTNAME]', value: '$HOSTNAME' }
-    - { section: 'www', option: 'env[PATH]', value: '/usr/local/bin:/usr/bin:/bin' }
-    - { section: 'www', option: 'env[TMP]', value: '/tmp' }
-    - { section: 'www', option: 'env[TMPDIR]', value: '/tmp' }
-    - { section: 'www', option: 'env[TEMP]', value: '/tmp' }
-  become: yes
+    - {section: 'www', option: 'pm', value: 'dynamic'}
+    - {section: 'www', option: 'pm.max_children', value: 120}
+    - {section: 'www', option: 'pm.start_servers', value: 12}
+    - {section: 'www', option: 'pm.min_spare_servers', value: 6}
+    - {section: 'www', option: 'pm.max_spare_servers', value: 18}
+    - {section: 'www', option: 'env[HOSTNAME]', value: '$HOSTNAME'}
+    - {section: 'www', option: 'env[PATH]', value: '/usr/local/bin:/usr/bin:/bin'}
+    - {section: 'www', option: 'env[TMP]', value: '/tmp'}
+    - {section: 'www', option: 'env[TMPDIR]', value: '/tmp'}
+    - {section: 'www', option: 'env[TEMP]', value: '/tmp'}
+  become: true
   notify:
     - restart php-fpm
   tags: [nextcloud, php]
 
-- name: configure php.ini
-  ini_file:
+- name: Configure php.ini
+  community.general.ini_file:
     path: '/etc/php/{{ php_version }}/fpm/php.ini'
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
   with_items:
-    - { section: 'opcache', option: 'opcache.enable', value: 1 }
-    - { section: 'opcache', option: 'opcache.interned_strings_buffer', value: 8 }
-    - { section: 'opcache', option: 'opcache.max_accelerated_files', value: 10000 }
-    - { section: 'opcache', option: 'opcache.memory_consumption', value: 128 }
-    - { section: 'opcache', option: 'opcache.save_comments', value: 1 }
-    - { section: 'opcache', option: 'opcache.revalidate_freq', value: 1 }
-    - { section: 'PHP', option: 'memory_limit', value: '512M' }
-    - { section: 'PHP', option: 'upload_max_filesize', value: '16G' }
-    - { section: 'PHP', option: 'post_max_size', value: '16G' }
-    - { section: 'PHP', option: 'max_input_timeout', value: '3600' }
-    - { section: 'PHP', option: 'max_execution_time', value: '3600' }
-  become: yes
+    - {section: 'opcache', option: 'opcache.enable', value: 1}
+    - {section: 'opcache', option: 'opcache.interned_strings_buffer', value: 8}
+    - {section: 'opcache', option: 'opcache.max_accelerated_files', value: 10000}
+    - {section: 'opcache', option: 'opcache.memory_consumption', value: 128}
+    - {section: 'opcache', option: 'opcache.save_comments', value: 1}
+    - {section: 'opcache', option: 'opcache.revalidate_freq', value: 1}
+    - {section: 'PHP', option: 'memory_limit', value: '512M'}
+    - {section: 'PHP', option: 'upload_max_filesize', value: '16G'}
+    - {section: 'PHP', option: 'post_max_size', value: '16G'}
+    - {section: 'PHP', option: 'max_input_timeout', value: '3600'}
+    - {section: 'PHP', option: 'max_execution_time', value: '3600'}
+  become: true
   notify:
     - restart php-fpm
   tags: [nextcloud, php]

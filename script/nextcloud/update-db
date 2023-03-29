@@ -9,7 +9,7 @@ cd "$SCRIPTDIR/../.."
 
 exec ansible \
   all \
-  --inventory raspberries \
+  --inventory inventory.yaml \
   --limit cloudbert \
   --module-name shell \
   --args "sudo -u www-data php /var/www/nextcloud/occ db:add-missing-indices" \

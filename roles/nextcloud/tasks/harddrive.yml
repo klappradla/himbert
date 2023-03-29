@@ -1,27 +1,27 @@
 ---
-- name: create mount directory
-  file:
+- name: Create mount directory
+  ansible.builtin.file:
     path: /hdd
     state: directory
     owner: '{{ user }}'
     group: '{{ user }}'
-  become: yes
+  become: true
   tags: [nextcloud, harddrive]
 
-- name: mount hdd
-  mount:
+- name: Mount hdd
+  ansible.posix.mount:
     path: /hdd
     src: /dev/sda1
     fstype: ext4
     state: present
-  become: yes
+  become: true
   tags: [nextcloud, harddrive]
 
-- name: add nextcloud directory
-  file:
+- name: Add nextcloud directory
+  ansible.builtin.file:
     path: /hdd/nextcloud/
     owner: www-data
     group: www-data
     state: directory
-  become: yes
+  become: true
   tags: [nextcloud, harddrive]
