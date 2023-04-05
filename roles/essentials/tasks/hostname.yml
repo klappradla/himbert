@@ -3,6 +3,7 @@
   ansible.builtin.template:
     src: hostname.j2
     dest: /etc/hostname
+    mode: "644"
   become: true
   notify:
     - reboot pi

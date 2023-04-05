@@ -5,6 +5,7 @@
     section: ''
     option: apc.enable_cli
     value: 1
+    create: false
   become: true
   notify:
     - restart nginx
@@ -14,6 +15,7 @@
   ansible.builtin.template:
     src: systemd/nextcloudcron.service.j2
     dest: /etc/systemd/system/nextcloudcron.service
+    mode: "644"
   become: true
   tags: [nextcloud, cron, systemd]
 
@@ -21,6 +23,7 @@
   ansible.builtin.template:
     src: systemd/nextcloudcron.timer.j2
     dest: /etc/systemd/system/nextcloudcron.timer
+    mode: "644"
   become: true
   tags: [nextcloud, cron, systemd]
 

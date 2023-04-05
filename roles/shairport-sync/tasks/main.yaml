@@ -1,7 +1,8 @@
 ---
 - name: Get current volume setting
-  ansible.builtin.shell:
-    cmd: amixer sget Headphone | awk -F"[][]" '/Mono:/ { print $2 }'
+  ansible.builtin.shell: |
+    set -o pipefail
+    amixer sget Headphone | awk -F"[][]" '/Mono:/ { print $2 }'
   changed_when: false
   register: current_volume
   tags: [shairport-sync]
@@ -124,6 +125,7 @@
   ansible.builtin.template:
     src: shairport-sync.conf
     dest: /etc/shairport-sync.conf
+    mode: "644"
   become: true
   notify:
     - restart shairport-sync

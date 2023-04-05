@@ -26,6 +26,7 @@
   ansible.builtin.template:
     src: nginx/nextcloud.config.j2
     dest: /etc/nginx/sites-enabled/nextcloud
+    mode: "644"
   notify:
     - reload nginx
   become: true
@@ -42,6 +43,7 @@
   ansible.builtin.template:
     src: systemd/certbot_renewal.service.j2
     dest: /etc/systemd/system/certbot_renewal.service
+    mode: "644"
   become: true
   tags: [nextcloud, ssl, systemd, update]
 
@@ -49,10 +51,11 @@
   ansible.builtin.template:
     src: systemd/certbot_renewal.timer.j2
     dest: /etc/systemd/system/certbot_renewal.timer
+    mode: "644"
   become: true
   tags: [nextcloud, ssl, systemd, update]
 
-- name: start certbot renewal timer
+- name: Start certbot renewal timer
   ansible.builtin.systemd:
     name: certbot_renewal.timer
     state: started

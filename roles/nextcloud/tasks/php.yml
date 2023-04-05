@@ -5,6 +5,7 @@
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
+    create: false
   with_items:
     - {section: 'www', option: 'pm', value: 'dynamic'}
     - {section: 'www', option: 'pm.max_children', value: 120}
@@ -27,6 +28,7 @@
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
+    create: false
   with_items:
     - {section: 'opcache', option: 'opcache.enable', value: 1}
     - {section: 'opcache', option: 'opcache.interned_strings_buffer', value: 8}

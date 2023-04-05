@@ -11,6 +11,6 @@ source "$SCRIPTDIR/lib/helpers"
 
 cd "$SCRIPTDIR/.."
 
-has ansible-lint || abort "Requires ansible-lint (brew install ansible-lint)"
+has ansible-lint || abort "Requires ansible-lint (pip3 install ansible-lint)"
 
 ansible-lint playbook.yaml

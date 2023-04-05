@@ -4,6 +4,7 @@
     url: "{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2"
     checksum: "sha256:{{ nextcloud_com.releases_url }}-{{ nextcloud_com.version }}.tar.bz2.sha256"
     dest: "{{ home }}"
+    mode: "644"
   check_mode: false
   register: nextcloud_archive
   notify:

@@ -1,5 +1,6 @@
 ---
-- hosts: lanberries
+- name: Raspberry Pis in local network
+  hosts: lanberries
   roles:
     - locale
     - essentials
@@ -9,7 +10,8 @@
     home: '{{ ansible_env.HOME }}'
     user: '{{ ansible_env.USER }}'
 
-- hosts: wifiberries
+- name: Raspberry Pis in Wifi network
+  hosts: wifiberries
   roles:
     - locale
     - essentials

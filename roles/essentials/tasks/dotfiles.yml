@@ -3,4 +3,5 @@
   ansible.builtin.copy:
     src: templates/dotfiles/vimrc
     dest: ~/.vimrc
+    mode: "644"
   tags: dotfiles

@@ -5,6 +5,7 @@
     dest: /var/www/nextcloud/config/cache.config.php
     owner: www-data
     group: www-data
+    mode: "644"
   become: true
   tags: [nextcloud, config, php]
 
@@ -14,6 +15,7 @@
     dest: /var/www/nextcloud/config/data.config.php
     owner: www-data
     group: www-data
+    mode: "644"
   become: true
   tags: [nextcloud, config, php]
 
@@ -23,6 +25,7 @@
     dest: /var/www/nextcloud/config/database.config.php
     owner: www-data
     group: www-data
+    mode: "644"
   become: true
   tags: [nextcloud, config, php]
 
@@ -32,5 +35,6 @@
     dest: /var/www/nextcloud/config/email.config.php
     owner: www-data
     group: www-data
+    mode: "644"
   become: true
   tags: [nextcloud, config, php]

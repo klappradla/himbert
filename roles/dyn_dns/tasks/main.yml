@@ -12,6 +12,7 @@
   ansible.builtin.template:
     src: ddclient.conf.j2
     dest: /etc/ddclient.conf
+    mode: "600"
   notify:
     - restart ddclient deamon
   become: true

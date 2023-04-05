@@ -1,5 +1,5 @@
 ---
-- name: Create mount directory
+- name: Create mount directory  # noqa: risky-file-permissions
   ansible.builtin.file:
     path: /hdd
     state: directory
@@ -23,5 +23,6 @@
     owner: www-data
     group: www-data
     state: directory
+    mode: "770"
   become: true
   tags: [nextcloud, harddrive]
