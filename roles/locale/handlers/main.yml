@@ -1,4 +1,4 @@
 ---
-- name: Update locale
+- name: update locale
   ansible.builtin.command: update-locale LANG={{ os.locale }} LC_ALL={{ os.locale }} LANGUAGE={{ os.locale }}
   become: true

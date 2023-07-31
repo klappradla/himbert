@@ -1,0 +1,38 @@
+---
+- name: Get current volume setting
+  ansible.builtin.shell: |
+    amixer sget PCM | awk -F"[][]" '/Mono:/ { print $2 }'
+  changed_when: false
+  register: current_volume
+  tags: [airplay-1]
+
+- name: Set alsa volume to 100%
+  ansible.builtin.raw: amixer set 'PCM' 100%
+  when: current_volume.stdout != '100%'
+  tags: [airplay-1]
+
+- name: Install shairport-sync package
+  ansible.builtin.apt:
+    pkg: shairport-sync
+    state: present
+  become: true
+  tags: [airplay-1, packages]
+
+- name: Configure shairport-sync
+  ansible.builtin.template:
+    src: shairport-sync.conf
+    dest: /etc/shairport-sync.conf
+    mode: "644"
+  become: true
+  notify:
+    - restart shairport-sync
+  tags: [airplay-1]
+
+- name: Start shairport-sync service
+  ansible.builtin.systemd:
+    name: shairport-sync
+    state: started
+    enabled: true
+    daemon_reload: true
+  become: true
+  tags: [airplay-1, systemd]
